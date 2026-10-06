@@ -788,7 +788,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (modalBody) modalBody.scrollTop = 0;
     }
 
+    function loadModalImages() {
+      const pendingImgs = modal.querySelectorAll('.modal-cardapio__img[data-src]');
+      pendingImgs.forEach(img => {
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+        }
+      });
+    }
+
     function openModal() {
+      loadModalImages();
       setPage('frente');
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -880,27 +891,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* --- 10. BACKGROUND VIDEO AUTOPLAY FALLBACK --------------- */
-  const bgVideos = document.querySelectorAll('.diferenciais__video, .sobre__video');
-  bgVideos.forEach(video => {
-    const tryPlay = () => {
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          const onUserInteract = () => {
-            video.play().catch(() => {});
-            window.removeEventListener('click', onUserInteract);
-            window.removeEventListener('touchstart', onUserInteract);
-            window.removeEventListener('scroll', onUserInteract);
-          };
-          window.addEventListener('click', onUserInteract, { once: true, passive: true });
-          window.addEventListener('touchstart', onUserInteract, { once: true, passive: true });
-          window.addEventListener('scroll', onUserInteract, { once: true, passive: true });
-        });
-      }
-    };
-    tryPlay();
-  });
+  /* --- 10. CARREGAMENTO SOB DEMANDA DOS VÍDEOS DE FUNDO (INTERSECTION OBSERVER) --- */
+  const lazyVideos = document.querySelectorAll('video[data-src]');
+
+  const initLazyVideo = (video) => {
+    const src = video.dataset.src;
+    if (!src || video.querySelector('source')) return;
+
+    const source = document.createElement('source');
+    source.src = src;
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    video.load();
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        const onUserInteract = () => {
+          video.play().catch(() => {});
+          window.removeEventListener('click', onUserInteract);
+          window.removeEventListener('touchstart', onUserInteract);
+          window.removeEventListener('scroll', onUserInteract);
+        };
+        window.addEventListener('click', onUserInteract, { once: true, passive: true });
+        window.addEventListener('touchstart', onUserInteract, { once: true, passive: true });
+        window.addEventListener('scroll', onUserInteract, { once: true, passive: true });
+      });
+    }
+  };
+
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initLazyVideo(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '300px 0px' });
+
+    lazyVideos.forEach(v => videoObserver.observe(v));
+  } else {
+    // Fallback para navegadores legados
+    lazyVideos.forEach(initLazyVideo);
+  }
 
   /* --- 11. FORMULÁRIO DE RESERVAS (WHATSAPP INTEGRATION) --- */
   const formReserva = document.getElementById('formReserva');
