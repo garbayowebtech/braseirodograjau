@@ -1,0 +1,351 @@
+/* ============================================================
+   BRASEIRO DO GRAJAÚ - HEADER / NAVBAR
+   Estilo: Schmidt & Villares (Header elegante e fixo com blur, logo
+   com micro-interação, efeito scrolled, hamburger animado em 'X'
+   e menu mobile fullscreen glassmorphic com links animados em cascata)
+   ============================================================ */
+
+/* --- Header Container Base --- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  background: transparent;
+  transition: padding var(--transition-base),
+              background-color var(--transition-base),
+              box-shadow var(--transition-base),
+              border-color var(--transition-base);
+  border-bottom: 1px solid transparent;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Header Scrolled State (Cor do Horários-Strip) --- */
+.header.scrolled,
+#header.scrolled {
+  background: linear-gradient(135deg, var(--color-wine) 0%, var(--color-wine-dark) 100%) !important;
+  background-color: var(--color-wine) !important;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(212, 146, 31, 0.35);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.header.scrolled::before {
+  opacity: 1;
+}
+
+.header > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Navigation Flex Layout --- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* --- Logo --- */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  z-index: 102;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 88px;
+  width: auto;
+  max-width: 325px;
+  object-fit: contain;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.nav-logo:hover .logo-img {
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 12px rgba(212, 146, 31, 0.5));
+}
+
+/* --- Nav Links (Desktop) --- */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links li a {
+  color: var(--color-cream);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  opacity: 0.85;
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-links li a:not(.btn)::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-amber), var(--color-gold));
+  border-radius: var(--radius-pill);
+  transition: width var(--transition-base);
+}
+
+.nav-links li a:not(.btn):hover {
+  opacity: 1;
+  color: var(--color-amber);
+}
+
+.nav-links li a:not(.btn):hover::after {
+  width: 100%;
+}
+
+/* Link Ativo */
+.nav-links li a.active:not(.btn) {
+  opacity: 1;
+  color: var(--color-amber);
+}
+
+.nav-links li a.active:not(.btn)::after {
+  width: 100%;
+}
+
+/* Botão CTA no Nav */
+.nav-links .btn {
+  opacity: 1;
+  font-size: 0.875rem;
+  padding: 0.62rem 1.4rem;
+  letter-spacing: 0.02em;
+}
+
+/* --- Hamburger Menu Button --- */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px;
+  z-index: 102;
+  outline: none;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-cream);
+  transition: all var(--transition-base);
+  transform-origin: center;
+  border-radius: 2px;
+}
+
+.hamburger:hover span {
+  background: var(--color-amber);
+}
+
+/* --- Mobile Responsiveness (<= 768px) --- */
+@media (max-width: 768px) {
+  .header {
+    padding: 0.65rem 0;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid transparent;
+    transition: background-color var(--transition-base),
+                box-shadow var(--transition-base),
+                border-color var(--transition-base);
+  }
+
+  .header.scrolled,
+  #header.scrolled {
+    background: linear-gradient(135deg, var(--color-wine) 0%, var(--color-wine-dark) 100%) !important;
+    background-color: var(--color-wine) !important;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(212, 146, 31, 0.35);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+  }
+
+  .nav {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 48px;
+  }
+
+  .nav-logo {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 102;
+    padding-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-img {
+    height: clamp(84px, 22.4vw, 96px);
+    max-width: 224px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 10px rgba(212, 146, 31, 0.25));
+    transition: transform var(--transition-fast), filter var(--transition-fast);
+  }
+
+  .nav-logo:hover .logo-img,
+  .nav-logo:active .logo-img {
+    transform: scale(1.04);
+    filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 14px rgba(212, 146, 31, 0.45));
+  }
+
+  .header.menu-open {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-bottom-color: transparent !important;
+  }
+
+  .hamburger {
+    display: flex;
+    z-index: 102;
+    margin-left: auto;
+  }
+
+  /* Menu Mobile com o background do horarios-strip */
+  .nav-links {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: linear-gradient(135deg, var(--color-wine) 0%, var(--color-wine-dark) 100%) !important;
+    background-color: var(--color-wine) !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.75rem;
+    padding: 5rem 1.5rem 2rem;
+    overflow-y: auto;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.02) translateY(-8px);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.3s ease;
+  }
+
+  .nav-links::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .nav-links.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1) translateY(0);
+  }
+
+  /* Staggered Link Entry Transition */
+  .nav-links li {
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: center;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .nav-links.active li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-links.active li:nth-child(1) { transition-delay: 0.08s; }
+  .nav-links.active li:nth-child(2) { transition-delay: 0.14s; }
+  .nav-links.active li:nth-child(3) { transition-delay: 0.20s; }
+  .nav-links.active li:nth-child(4) { transition-delay: 0.26s; }
+  .nav-links.active li:nth-child(5) { transition-delay: 0.32s; }
+  .nav-links.active li:nth-child(6) { transition-delay: 0.38s; }
+  .nav-links.active li:nth-child(7) { transition-delay: 0.44s; }
+
+  .nav-links li a {
+    font-size: 1.25rem;
+    font-weight: 600;
+    opacity: 1;
+    display: inline-block;
+    padding: 0.3rem 0;
+  }
+
+  .nav-links .btn {
+    font-size: 1.05rem;
+    padding: 0.85rem 2rem;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  /* Hamburger Animado */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    background: var(--color-amber);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    background: var(--color-amber);
+  }
+}
