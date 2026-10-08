@@ -14,6 +14,8 @@
   overflow: hidden;
   padding-top: 0;
   background-color: var(--color-black);
+  width: 100%;
+  max-width: 100%;
 }
 
 .hero__bg {
@@ -253,7 +255,7 @@
   .hero__title {
     /* Fonte proporcional: a linha mais longa (15 caracteres) ocupa 100% da largura útil.
        Frase fixa em 3 linhas (quebras .hero-br). Fallback em vw para navegadores sem cqi. */
-    --hero-title-fit: 6.9;
+    --hero-title-fit: 7.1;
     font-size: calc((100vw - 2 * var(--section-pad-h)) / var(--hero-title-fit));
     font-size: calc(100cqi / var(--hero-title-fit));
     white-space: nowrap;
@@ -261,6 +263,8 @@
     margin-bottom: 0.6rem; /* Reduz espaço excessivo entre title e tagline */
     min-height: auto;
     text-align: left;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .hero__title .hero-br { display: inline; }
   .hero__tagline {
@@ -276,6 +280,8 @@
   }
   .hero__btn-reserva {
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     justify-content: center;
     font-size: 1.05rem;
     padding: 1.05rem 1.8rem;
@@ -296,6 +302,18 @@
     width: max-content;
     bottom: 1.5rem;
     align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 340px) {
+  .hero__title {
+    --hero-title-fit: 7.6;
+  }
+  .hero__btn-reserva {
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+    white-space: normal;
     text-align: center;
   }
 }
@@ -434,6 +452,16 @@
   font-size: 0.94rem;
   color: var(--color-text-muted);
   line-height: 1.7;
+}
+
+@media (max-width: 480px) {
+  .diferenciais__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .diferencial-card {
+    padding: 2rem 1.25rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2035,6 +2063,8 @@
   padding: 1.5rem 0;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 .horarios-strip::before {
@@ -2088,6 +2118,19 @@
 
 @media (max-width: 600px) {
   .horario-divider { display: none; }
+}
+
+@media (max-width: 480px) {
+  .horarios-strip__inner {
+    gap: 1.25rem;
+  }
+  .horario-item {
+    max-width: 100%;
+    word-break: break-word;
+  }
+  .horario-item__value {
+    word-break: break-word;
+  }
 }
 
 /* === LIGHTBOX DA GALERIA === */

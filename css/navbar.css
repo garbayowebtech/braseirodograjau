@@ -222,7 +222,7 @@
 
   .logo-img {
     height: clamp(84px, 22.4vw, 96px);
-    max-width: 224px;
+    max-width: min(224px, 80vw);
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 10px rgba(212, 146, 31, 0.25));
