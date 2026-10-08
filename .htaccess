@@ -1,0 +1,58 @@
+# ============================================================
+# BRASEIRO DO GRAJAÚ - CONFIGURAÇÃO APACHE / .HTACCESS
+# Headers de Segurança, Otimização de Cache e Compressão
+# ============================================================
+
+# Página de Erro 404 Personalizada
+ErrorDocument 404 /404.html
+
+# 1. HEADERS DE SEGURANÇA
+<IfModule mod_headers.c>
+  # Prevenção contra sniffing de MIME types
+  Header set X-Content-Type-Options "nosniff"
+
+  # Proteção contra Clickjacking
+  Header set X-Frame-Options "SAMEORIGIN"
+
+  # Controle de Referrer
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Política de Permissões de APIs do Navegador
+  Header set Permissions-Policy "geolocation=(), camera=(), microphone=(), payment=()"
+
+  # Forçar HTTPS com HSTS (1 ano)
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+  # Content Security Policy (CSP) equilibrada para fontes, imagens e mapas
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; media-src 'self'; frame-src https://www.google.com; connect-src 'self'; base-uri 'self'; form-action 'self';"
+</IfModule>
+
+# 2. COMPRESSÃO GZIP / DEFLATE
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# 3. POLÍTICAS DE CACHE DE NAVEGADOR
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+
+  # Mídias e Imagens (Cache longo)
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+
+  # Fontes
+  ExpiresByType font/woff2 "access plus 1 year"
+
+  # CSS e JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+
+  # HTML e Dados (Atualização imediata)
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/json "access plus 0 seconds"
+</IfModule>

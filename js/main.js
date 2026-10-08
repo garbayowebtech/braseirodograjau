@@ -28,7 +28,42 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   syncWhatsAppLinks();
 
-  /* --- 1. HEADER SCROLL & BACK-TO-TOP VISIBILITY ------------- */
+  
+  /* --- FOCUS TRAP HELPER (ACERVO ACESSIBILIDADE WCAG) --- */
+  function setupFocusTrap(modalEl) {
+    let cleanup = null;
+    return {
+      activate: () => {
+        const focusable = modalEl.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        const handleKeyDown = (e) => {
+          if (e.key !== 'Tab') return;
+          if (e.shiftKey) {
+            if (document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            }
+          } else {
+            if (document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        };
+
+        modalEl.addEventListener('keydown', handleKeyDown);
+        cleanup = () => modalEl.removeEventListener('keydown', handleKeyDown);
+      },
+      deactivate: () => {
+        if (cleanup) { cleanup(); cleanup = null; }
+      }
+    };
+  }
+
+/* --- 1. HEADER SCROLL & BACK-TO-TOP VISIBILITY ------------- */
   const header = document.getElementById('header') || document.querySelector('.header');
   const backToTopBtn = document.getElementById('back-to-top');
 
@@ -53,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll(); // Executa imediatamente ao carregar
 
-  /* --- 2. MENU MOBILE HAMBURGER (Schmidt-Villares style) ----- */
+  /* --- 2. MENU MOBILE HAMBURGER ----- */
   const hamburger = document.getElementById('hamburger');
   const navLinksContainer = document.getElementById('navLinks');
 
@@ -96,30 +131,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* --- 3. SCROLLSPY (Link ativo na navegação) --------------- */
+  /* --- 3. SCROLLSPY (IntersectionObserver de alto desempenho) --- */
   const spySections = document.querySelectorAll('main > section[id], section[id]');
   const spyNavLinks = document.querySelectorAll('.nav-links a:not(.btn)');
 
-  const updateActiveNav = () => {
-    const scrollPos = (window.pageYOffset || document.documentElement.scrollTop || 0) + 140;
-    spySections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      const id = section.getAttribute('id');
-      if (scrollPos >= top && scrollPos < top + height) {
+  if ('IntersectionObserver' in window && spySections.length) {
+    const visibleSections = new Map();
+    const spyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          visibleSections.set(entry.target.id, entry.intersectionRatio);
+        } else {
+          visibleSections.delete(entry.target.id);
+        }
+      });
+
+      let bestId = null;
+      let maxRatio = -1;
+      visibleSections.forEach((ratio, id) => {
+        if (ratio > maxRatio) {
+          maxRatio = ratio;
+          bestId = id;
+        }
+      });
+
+      if (bestId) {
         spyNavLinks.forEach(link => {
-          if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
+          link.classList.toggle('active', link.getAttribute('href') === `#${bestId}`);
         });
       }
+    }, {
+      rootMargin: '-20% 0px -40% 0px',
+      threshold: [0, 0.2, 0.5, 0.8]
     });
-  };
 
-  window.addEventListener('scroll', updateActiveNav, { passive: true });
-  updateActiveNav();
+    spySections.forEach(s => spyObserver.observe(s));
+  }
 
   /* --- 4. HERO BG PARALLAX LOAD EFFECT ----------------------- */
   const hero = document.querySelector('.hero');
@@ -133,9 +180,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (typedEl && !prefersReducedMotion) {
+    // Quebras de linha fixas (somente mobile): '|' vira <br class="hero-br">,
+    // que fica oculto no desktop. Só é emitido quando o próximo caractere já foi digitado.
+    const BR = '<br class="hero-br">';
+    function sliceMarked(str, n) {
+      let out = '';
+      let c = 0;
+      for (const ch of str) {
+        if (c >= n) break;
+        if (ch === '|') { out += BR; continue; }
+        out += ch;
+        c++;
+      }
+      return out;
+    }
+
     const phrases = [
       {
-        prefix: "Churrasco de verdade é feito na ",
+        prefix: "Churrasco de |verdade é feito |na ",
         highlight: "Brasa",
         suffix: ".",
         length: 38,
@@ -143,22 +205,22 @@ document.addEventListener('DOMContentLoaded', () => {
           const pLen = 32;
           const hLen = 5;
           if (count <= pLen) {
-            return this.prefix.slice(0, count);
+            return sliceMarked(this.prefix, count);
           } else if (count <= pLen + hLen) {
             const hPart = this.highlight.slice(0, count - pLen);
-            return this.prefix + '<span class="highlight fire-text">' + hPart + '</span>';
+            return sliceMarked(this.prefix, pLen) + '<span class="highlight fire-text">' + hPart + '</span>';
           } else {
             const sPart = this.suffix.slice(0, count - pLen - hLen);
-            return this.prefix + '<span class="highlight fire-text">' + this.highlight + '</span>' + sPart;
+            return sliceMarked(this.prefix, pLen) + '<span class="highlight fire-text">' + this.highlight + '</span>' + sPart;
           }
         },
         holdTime: 2600
       },
       {
-        text: "Chama todo mundo e vem pra cá!",
+        text: "Chama todo |mundo e vem |pra cá!",
         length: 31,
         render: function(count) {
-          return this.text.slice(0, count);
+          return sliceMarked(this.text, count);
         },
         holdTime: 2800
       }
@@ -182,12 +244,13 @@ document.addEventListener('DOMContentLoaded', () => {
       tester.style.lineHeight = comp.lineHeight;
       tester.style.letterSpacing = comp.letterSpacing;
       tester.style.wordBreak = 'break-word';
+      tester.style.whiteSpace = comp.whiteSpace;
       tester.style.boxSizing = 'border-box';
       document.body.appendChild(tester);
 
-      tester.innerHTML = 'Churrasco de verdade é feito na <span class="highlight fire-text">Brasa</span>.';
+      tester.innerHTML = 'Churrasco de ' + BR + 'verdade é feito ' + BR + 'na <span class="highlight fire-text">Brasa</span>.';
       const h1 = tester.offsetHeight;
-      tester.innerHTML = 'Chama todo mundo e vem pra cá!';
+      tester.innerHTML = 'Chama todo ' + BR + 'mundo e vem ' + BR + 'pra cá!';
       const h2 = tester.offsetHeight;
       document.body.removeChild(tester);
 
@@ -273,291 +336,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2500);
   }
 
-  /* --- 6. CARDÁPIO TABS & CAROUSELS --------------------------- */
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const tabPanels = document.querySelectorAll('.tab-panel');
+    /* --- 6. SISTEMA DE CARROSSEL UNIFICADO & FILTRO DE CATEGORIAS --- */
+  function setupCarousel({ track, getCards, dotsContainer }) {
+    if (!track) return null;
 
-  function initCardapioCarousels() {
-    tabPanels.forEach(panel => {
-      const track = panel.querySelector('.cardapio__carousel-track');
-      const prevBtn = panel.querySelector('.carousel-btn--prev');
-      const nextBtn = panel.querySelector('.carousel-btn--next');
-      const dotsContainer = panel.querySelector('.carousel-dots');
-      if (!track) return;
-
-      const cards = track.querySelectorAll('.menu-card');
-      if (!cards.length) return;
-
-      // Garante que todos os cards fiquem visíveis imediatamente
-      cards.forEach(card => card.classList.add('in-view'));
-
-      function getMetrics() {
-        const firstCard = cards[0];
-        const gap = parseFloat(window.getComputedStyle(track).gap) || 24;
-        const cardWidth = firstCard.offsetWidth + gap;
-        const visibleCards = Math.max(1, Math.round((track.clientWidth + gap * 0.4) / cardWidth));
-        const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
-        return { cardWidth, visibleCards, maxScroll, gap };
-      }
-
-      function updateControls() {
-        if (!panel.classList.contains('active')) return;
-        const { cardWidth, visibleCards, maxScroll } = getMetrics();
-
-        // Se todo o conteúdo couber na tela sem rolar, oculta controles mantendo altura
-        if (maxScroll <= 8) {
-          if (prevBtn) prevBtn.style.display = 'none';
-          if (nextBtn) nextBtn.style.display = 'none';
-          if (dotsContainer) {
-            dotsContainer.style.visibility = 'hidden';
-            dotsContainer.innerHTML = '';
-          }
-          return;
-        }
-
-        if (prevBtn) prevBtn.style.display = 'flex';
-        if (nextBtn) nextBtn.style.display = 'flex';
-        if (dotsContainer) {
-          dotsContainer.style.visibility = 'visible';
-          dotsContainer.style.display = 'flex';
-        }
-
-        // Reconstrução dos indicadores (dots) por bloco/página
-        const totalPages = Math.max(1, Math.ceil(cards.length / visibleCards));
-        dotsContainer.innerHTML = '';
-
-        const currentScroll = track.scrollLeft;
-        const currentPage = Math.min(
-          totalPages - 1,
-          Math.round(currentScroll / (visibleCards * cardWidth))
-        );
-
-        for (let i = 0; i < totalPages; i++) {
-          const dot = document.createElement('button');
-          dot.className = 'carousel-dot' + (i === currentPage ? ' active' : '');
-          dot.type = 'button';
-          dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
-          dot.addEventListener('click', () => {
-            const targetLeft = Math.min(i * visibleCards * cardWidth, maxScroll);
-            track.scrollTo({ left: targetLeft, behavior: 'smooth' });
-          });
-          dotsContainer.appendChild(dot);
-        }
-      }
-
-      function syncActiveDot() {
-        if (!dotsContainer || dotsContainer.style.display === 'none') return;
-        const { cardWidth, visibleCards, maxScroll } = getMetrics();
-        const totalPages = dotsContainer.children.length;
-        if (!totalPages) return;
-
-        let pageIndex;
-        if (track.scrollLeft >= maxScroll - 16) {
-          pageIndex = totalPages - 1;
-        } else {
-          pageIndex = Math.min(
-            totalPages - 1,
-            Math.max(0, Math.round(track.scrollLeft / (visibleCards * cardWidth)))
-          );
-        }
-
-        Array.from(dotsContainer.children).forEach((dot, idx) => {
-          dot.classList.toggle('active', idx === pageIndex);
-        });
-      }
-
-      // Avançar
-      if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-          const { cardWidth, visibleCards, maxScroll } = getMetrics();
-          const step = visibleCards * cardWidth;
-          if (track.scrollLeft >= maxScroll - 16) {
-            track.scrollTo({ left: 0, behavior: 'smooth' });
-          } else {
-            track.scrollBy({ left: step, behavior: 'smooth' });
-          }
-        });
-      }
-
-      // Voltar
-      if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-          const { cardWidth, visibleCards, maxScroll } = getMetrics();
-          const step = visibleCards * cardWidth;
-          if (track.scrollLeft <= 16) {
-            track.scrollTo({ left: maxScroll, behavior: 'smooth' });
-          } else {
-            track.scrollBy({ left: -step, behavior: 'smooth' });
-          }
-        });
-      }
-
-      // Sincronizar indicador de rolagem via rAF
-      let isTicking = false;
-      track.addEventListener('scroll', () => {
-        if (!isTicking) {
-          window.requestAnimationFrame(() => {
-            syncActiveDot();
-            isTicking = false;
-          });
-          isTicking = true;
-        }
-      }, { passive: true });
-
-      // Suporte a Mouse Drag (arrastar com o mouse no desktop)
-      let isDown = false;
-      let startX = 0;
-      let scrollStart = 0;
-
-      track.addEventListener('mousedown', (e) => {
-        isDown = true;
-        track.classList.add('is-dragging');
-        startX = e.pageX - track.offsetLeft;
-        scrollStart = track.scrollLeft;
-      });
-
-      window.addEventListener('mouseup', () => {
-        if (isDown) {
-          isDown = false;
-          track.classList.remove('is-dragging');
-        }
-      });
-
-      track.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - track.offsetLeft;
-        const walk = (x - startX) * 1.4;
-        track.scrollLeft = scrollStart - walk;
-      });
-
-      // Suporte a teclado
-      track.addEventListener('keydown', (e) => {
-        const { cardWidth, visibleCards } = getMetrics();
-        const step = visibleCards * cardWidth;
-        if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          track.scrollBy({ left: step, behavior: 'smooth' });
-        } else if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          track.scrollBy({ left: -step, behavior: 'smooth' });
-        }
-      });
-
-      panel.__updateCarousel = () => {
-        updateControls();
-      };
-    });
-
-    const activePanel = document.querySelector('.tab-panel.active');
-    if (activePanel && activePanel.__updateCarousel) {
-      activePanel.__updateCarousel();
+    function getVisibleCards() {
+      return Array.from(getCards()).filter(card => card.style.display !== 'none');
     }
-  }
-
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tab;
-
-      tabBtns.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      tabPanels.forEach(p => p.classList.remove('active'));
-
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      const panel = document.getElementById('tab-' + target);
-      if (panel) {
-        panel.classList.add('active');
-        const track = panel.querySelector('.cardapio__carousel-track');
-        if (track) track.scrollLeft = 0;
-        if (panel.__updateCarousel) {
-          setTimeout(() => panel.__updateCarousel(), 40);
-        }
-      }
-    });
-  });
-
-  initCardapioCarousels();
-
-  let resizeTimer = null;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      const activePanel = document.querySelector('.tab-panel.active');
-      if (activePanel && activePanel.__updateCarousel) {
-        activePanel.__updateCarousel();
-      }
-      if (window.__updateGaleriaCarousel) {
-        window.__updateGaleriaCarousel();
-      }
-    }, 150);
-  });
-
-  /* --- 6.5. GALERIA CAROUSEL --------------------------------- */
-  let galeriaHasDragged = false;
-
-  function initGaleriaCarousel() {
-    const container = document.querySelector('.galeria__carousel-container');
-    if (!container) return;
-
-    const track = container.querySelector('.galeria__carousel-track');
-    const prevBtn = container.querySelector('.galeria-btn--prev');
-    const nextBtn = container.querySelector('.galeria-btn--next');
-    const dotsContainer = container.querySelector('.galeria-dots');
-    if (!track) return;
-
-    const items = track.querySelectorAll('.galeria__item');
-    if (!items.length) return;
-
-    items.forEach(item => item.classList.add('in-view'));
 
     function getMetrics() {
-      const firstItem = items[0];
+      const cards = getVisibleCards();
+      if (!cards.length) return { cardWidth: 0, visibleCount: 1, maxScroll: 0 };
+      const firstCard = cards[0];
       const gap = parseFloat(window.getComputedStyle(track).gap) || 24;
-      const itemWidth = firstItem.offsetWidth + gap;
-      const visibleItems = Math.max(1, Math.round((track.clientWidth + gap * 0.4) / itemWidth));
+      const cardWidth = firstCard.offsetWidth + gap;
+      const visibleCount = Math.max(1, Math.round((track.clientWidth + gap * 0.4) / cardWidth));
       const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
-      return { itemWidth, visibleItems, maxScroll, gap };
+      return { cardWidth, visibleCount, maxScroll, gap };
     }
 
     function updateControls() {
-      const { itemWidth, visibleItems, maxScroll } = getMetrics();
+      const cards = getVisibleCards();
+      if (!cards.length || !dotsContainer) return;
+      cards.forEach(card => card.classList.add('in-view'));
 
+      const { cardWidth, visibleCount, maxScroll } = getMetrics();
       if (maxScroll <= 8) {
-        if (prevBtn) prevBtn.style.display = 'none';
-        if (nextBtn) nextBtn.style.display = 'none';
-        if (dotsContainer) {
-          dotsContainer.style.visibility = 'hidden';
-          dotsContainer.innerHTML = '';
-        }
+        dotsContainer.style.visibility = 'hidden';
+        dotsContainer.innerHTML = '';
         return;
       }
 
-      if (prevBtn) prevBtn.style.display = 'flex';
-      if (nextBtn) nextBtn.style.display = 'flex';
-      if (dotsContainer) {
-        dotsContainer.style.visibility = 'visible';
-        dotsContainer.style.display = 'flex';
-      }
+      dotsContainer.style.visibility = 'visible';
+      dotsContainer.style.display = 'flex';
 
-      const totalPages = Math.max(1, Math.ceil(items.length / visibleItems));
+      const totalPages = Math.max(1, Math.ceil(cards.length / visibleCount));
       dotsContainer.innerHTML = '';
 
       const currentScroll = track.scrollLeft;
       const currentPage = Math.min(
         totalPages - 1,
-        Math.round(currentScroll / (visibleItems * itemWidth))
+        Math.round(currentScroll / (visibleCount * cardWidth || 1))
       );
 
       for (let i = 0; i < totalPages; i++) {
         const dot = document.createElement('button');
         dot.className = 'carousel-dot' + (i === currentPage ? ' active' : '');
         dot.type = 'button';
-        dot.setAttribute('aria-label', `Ir para foto ${i + 1}`);
+        dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
         dot.addEventListener('click', () => {
-          const targetLeft = Math.min(i * visibleItems * itemWidth, maxScroll);
+          const targetLeft = Math.min(i * visibleCount * cardWidth, maxScroll);
           track.scrollTo({ left: targetLeft, behavior: 'smooth' });
         });
         dotsContainer.appendChild(dot);
@@ -566,17 +394,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function syncActiveDot() {
       if (!dotsContainer || dotsContainer.style.display === 'none') return;
-      const { itemWidth, visibleItems, maxScroll } = getMetrics();
+      const { cardWidth, visibleCount, maxScroll } = getMetrics();
       const totalPages = dotsContainer.children.length;
-      if (!totalPages) return;
+      if (!totalPages || cardWidth === 0) return;
 
       let pageIndex;
-      if (track.scrollLeft >= maxScroll - 16) {
+      if (track.scrollLeft >= maxScroll - 10) {
         pageIndex = totalPages - 1;
       } else {
         pageIndex = Math.min(
           totalPages - 1,
-          Math.max(0, Math.round(track.scrollLeft / (visibleItems * itemWidth)))
+          Math.round(track.scrollLeft / (visibleCount * cardWidth))
         );
       }
 
@@ -585,75 +413,44 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        const { itemWidth, visibleItems, maxScroll } = getMetrics();
-        const step = visibleItems * itemWidth;
-        if (track.scrollLeft >= maxScroll - 16) {
-          track.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          track.scrollBy({ left: step, behavior: 'smooth' });
-        }
-      });
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        const { itemWidth, visibleItems, maxScroll } = getMetrics();
-        const step = visibleItems * itemWidth;
-        if (track.scrollLeft <= 16) {
-          track.scrollTo({ left: maxScroll, behavior: 'smooth' });
-        } else {
-          track.scrollBy({ left: -step, behavior: 'smooth' });
-        }
-      });
-    }
-
-    let isTicking = false;
-    track.addEventListener('scroll', () => {
-      if (!isTicking) {
-        window.requestAnimationFrame(() => {
-          syncActiveDot();
-          isTicking = false;
-        });
-        isTicking = true;
-      }
-    }, { passive: true });
-
     let isDown = false;
     let startX = 0;
     let scrollStart = 0;
+    let hasDragged = false;
 
     track.addEventListener('mousedown', (e) => {
       isDown = true;
-      galeriaHasDragged = false;
-      track.classList.add('is-dragging');
+      hasDragged = false;
+      track.classList.add('active-drag');
       startX = e.pageX - track.offsetLeft;
       scrollStart = track.scrollLeft;
     });
 
     window.addEventListener('mouseup', () => {
-      if (isDown) {
-        isDown = false;
-        track.classList.remove('is-dragging');
-        setTimeout(() => { galeriaHasDragged = false; }, 60);
-      }
+      if (!isDown) return;
+      isDown = false;
+      track.classList.remove('active-drag');
+    });
+
+    track.addEventListener('mouseleave', () => {
+      if (!isDown) return;
+      isDown = false;
+      track.classList.remove('active-drag');
     });
 
     track.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       const x = e.pageX - track.offsetLeft;
       const walk = (x - startX) * 1.4;
-      if (Math.abs(walk) > 5) {
-        galeriaHasDragged = true;
-      }
-      e.preventDefault();
+      if (Math.abs(walk) > 6) hasDragged = true;
       track.scrollLeft = scrollStart - walk;
     });
 
+    track.addEventListener('scroll', syncActiveDot, { passive: true });
+
     track.addEventListener('keydown', (e) => {
-      const { itemWidth, visibleItems } = getMetrics();
-      const step = visibleItems * itemWidth;
+      const { cardWidth, visibleCount } = getMetrics();
+      const step = visibleCount * cardWidth;
       if (e.key === 'ArrowRight') {
         e.preventDefault();
         track.scrollBy({ left: step, behavior: 'smooth' });
@@ -663,22 +460,81 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    window.__updateGaleriaCarousel = updateControls;
+    window.addEventListener('resize', () => {
+      updateControls();
+    });
+
     updateControls();
+
+    return {
+      updateControls,
+      getHasDragged: () => hasDragged,
+      resetScroll: () => { track.scrollLeft = 0; }
+    };
   }
 
-  initGaleriaCarousel();
+  // Cardápio: Carrossel e Filtro de Categorias sem duplicação de DOM
+  const menuTrack = document.getElementById('track-cardapio');
+  const menuDots = document.getElementById('dots-cardapio');
+  const menuCards = menuTrack ? menuTrack.querySelectorAll('.menu-card') : [];
+  const tabBtns = document.querySelectorAll('.tab-btn');
 
-  /* --- 7. GALERIA LIGHTBOX ----------------------------------- */
+  let cardapioCarousel = null;
+  if (menuTrack) {
+    cardapioCarousel = setupCarousel({
+      track: menuTrack,
+      getCards: () => menuTrack.querySelectorAll('.menu-card'),
+      dotsContainer: menuDots
+    });
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.dataset.tab;
+
+        tabBtns.forEach(b => {
+          b.classList.toggle('active', b === btn);
+          b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+        });
+
+        menuCards.forEach(card => {
+          if (cat === 'tudo' || card.dataset.category === cat) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (cardapioCarousel) {
+          cardapioCarousel.resetScroll();
+          setTimeout(() => cardapioCarousel.updateControls(), 40);
+        }
+      });
+    });
+  }
+
+  // Galeria: Carrossel
+  const galeriaTrack = document.getElementById('track-galeria');
+  const galeriaDots = document.querySelector('.galeria-dots');
+  let galeriaCarousel = null;
+  if (galeriaTrack) {
+    galeriaCarousel = setupCarousel({
+      track: galeriaTrack,
+      getCards: () => galeriaTrack.querySelectorAll('.galeria__item'),
+      dotsContainer: galeriaDots
+    });
+  }
+
+  /* --- 7. GALERIA LIGHTBOX COM FOCUS TRAP -------------------- */
   const galItems = document.querySelectorAll('.galeria__item');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxClose = document.getElementById('lightbox-close');
   let lastActiveGalleryItem = null;
+  const lbTrap = lightbox ? setupFocusTrap(lightbox) : null;
 
   if (lightbox && lightboxImg) {
     const openLightbox = (item) => {
-      if (typeof galeriaHasDragged !== 'undefined' && galeriaHasDragged) return;
+      if (galeriaCarousel && galeriaCarousel.getHasDragged()) return;
       const img = item.querySelector('img');
       if (img) {
         lastActiveGalleryItem = item;
@@ -686,6 +542,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxImg.alt = img.alt || 'Foto do Braseiro do Grajaú em tamanho ampliado';
         lightbox.classList.add('open');
         document.body.style.overflow = 'hidden';
+        if (lbTrap) lbTrap.activate();
         if (lightboxClose) lightboxClose.focus();
       }
     };
@@ -701,6 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const closeLb = () => {
+      if (lbTrap) lbTrap.deactivate();
       lightbox.classList.remove('open');
       document.body.style.overflow = '';
       setTimeout(() => {
@@ -719,6 +577,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --- 7.5. MODAL CARDÁPIO COMPLETO (FRENTE E VERSO) ---------- */
+    /* --- 7.5. MODAL CARDÁPIO COMPLETO (FRENTE E VERSO) ---------- */
   function initModalCardapio() {
     const openBtn = document.getElementById('btn-abrir-cardapio-completo');
     const modal = document.getElementById('modal-cardapio');
@@ -730,9 +589,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.getElementById('btn-cardapio-prev');
     const nextBtn = document.getElementById('btn-cardapio-next');
     const indicator = document.getElementById('cardapio-page-indicator');
-    const backdrop = document.querySelector('.modal-cardapio__backdrop');
     const modalBody = document.querySelector('.modal-cardapio__body');
-    const modalImages = modal ? modal.querySelectorAll('.modal-cardapio__img') : [];
+    let lastActiveCardapioTrigger = null;
+    const modalTrap = modal ? setupFocusTrap(modal) : null;
 
     if (!modal) return;
 
@@ -763,17 +622,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function setPage(page) {
       currentPage = page;
-      updateZoom(false); // Sempre reseta para a visualização inicial de 100% da vh
+      updateZoom(false);
 
       if (page === 'frente') {
-        if (viewFrente) viewFrente.style.display = 'flex';
-        if (viewVerso) viewVerso.style.display = 'none';
+        if (viewFrente) viewFrente.classList.remove('modal-cardapio__view--hidden');
+        if (viewVerso) viewVerso.classList.add('modal-cardapio__view--hidden');
         if (prevBtn) prevBtn.disabled = true;
         if (nextBtn) nextBtn.disabled = false;
         if (indicator) indicator.textContent = 'Página 1 de 2 (Frente)';
       } else {
-        if (viewFrente) viewFrente.style.display = 'none';
-        if (viewVerso) viewVerso.style.display = 'flex';
+        if (viewFrente) viewFrente.classList.add('modal-cardapio__view--hidden');
+        if (viewVerso) viewVerso.classList.remove('modal-cardapio__view--hidden');
         if (prevBtn) prevBtn.disabled = false;
         if (nextBtn) nextBtn.disabled = true;
         if (indicator) indicator.textContent = 'Página 2 de 2 (Verso)';
@@ -799,68 +658,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openModal() {
+      lastActiveCardapioTrigger = document.activeElement;
       loadModalImages();
       setPage('frente');
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
+      if (modalTrap) modalTrap.activate();
+      if (closeBtn) closeBtn.focus();
     }
 
     function closeModal() {
+      if (modalTrap) modalTrap.deactivate();
       modal.classList.remove('open');
       updateZoom(false);
       document.body.style.overflow = '';
+      if (lastActiveCardapioTrigger && typeof lastActiveCardapioTrigger.focus === 'function') {
+        lastActiveCardapioTrigger.focus();
+      }
     }
 
-    if (openBtn) {
-      openBtn.addEventListener('click', openModal);
-    }
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', closeModal);
-    }
-
-    if (zoomBtn) {
-      zoomBtn.addEventListener('click', toggleZoom);
-    }
-
-    modalImages.forEach(img => {
-      img.addEventListener('click', toggleZoom);
-    });
-
-    if (backdrop) {
-      backdrop.addEventListener('click', closeModal);
-    }
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (zoomBtn) zoomBtn.addEventListener('click', toggleZoom);
 
     tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        setPage(tab.dataset.page);
-      });
+      tab.addEventListener('click', () => setPage(tab.dataset.page));
     });
 
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => setPage('frente'));
-    }
+    if (prevBtn) prevBtn.addEventListener('click', () => setPage('frente'));
+    if (nextBtn) nextBtn.addEventListener('click', () => setPage('verso'));
 
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => setPage('verso'));
-    }
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal || e.target.classList.contains('modal-cardapio__backdrop')) {
+        closeModal();
+      }
+    });
 
     document.addEventListener('keydown', (e) => {
-      if (modal.classList.contains('open')) {
-        if (e.key === 'Escape') {
-          closeModal();
-        } else if (e.key === 'ArrowRight' && currentPage === 'frente') {
-          setPage('verso');
-        } else if (e.key === 'ArrowLeft' && currentPage === 'verso') {
-          setPage('frente');
-        }
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') {
+        closeModal();
+      } else if (e.key === 'ArrowLeft') {
+        setPage('frente');
+      } else if (e.key === 'ArrowRight') {
+        setPage('verso');
       }
     });
   }
 
   initModalCardapio();
 
-  /* --- 8. BOTÃO VOLTAR AO TOPO ------------------------------- */
+/* --- 8. BOTÃO VOLTAR AO TOPO ------------------------------- */
   if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -884,12 +732,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (cookiePolicyLink) {
-    cookiePolicyLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      alert('Política de Privacidade: O Braseiro do Grajaú respeita a sua privacidade. Utilizamos apenas armazenamento local essencial para registrar seu consentimento de navegação. Não compartilhamos nem comercializamos seus dados.');
-    });
-  }
+  // cookiePolicyLink navega normalmente para privacidade.html
 
   /* --- 10. CARREGAMENTO SOB DEMANDA DOS VÍDEOS DE FUNDO (INTERSECTION OBSERVER) --- */
   const lazyVideos = document.querySelectorAll('video[data-src]');
@@ -904,6 +747,7 @@ document.addEventListener('DOMContentLoaded', () => {
     video.appendChild(source);
     video.load();
 
+    if (prefersReducedMotion) return;
     const playPromise = video.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {
@@ -936,25 +780,58 @@ document.addEventListener('DOMContentLoaded', () => {
     lazyVideos.forEach(initLazyVideo);
   }
 
-  /* --- 11. FORMULÁRIO DE RESERVAS (WHATSAPP INTEGRATION) --- */
+    /* --- 11. FORMULÁRIO DE RESERVAS (COM FEEDBACK INLINE E VALIDAÇÃO DINÂMICA) --- */
   const formReserva = document.getElementById('formReserva');
   const dataInput = document.getElementById('reserva-data');
+  const horarioInput = document.getElementById('reserva-horario');
+  const feedbackEl = document.getElementById('reserva-feedback');
+
+  const showFeedback = (msg, isError = true) => {
+    if (!feedbackEl) return;
+    feedbackEl.textContent = msg;
+    feedbackEl.className = 'form-feedback ' + (isError ? 'error' : 'success');
+    feedbackEl.style.display = 'block';
+  };
+
+  const clearFeedback = () => {
+    if (feedbackEl) {
+      feedbackEl.style.display = 'none';
+      feedbackEl.textContent = '';
+    }
+  };
 
   if (dataInput) {
-    // Define a data mínima como a data atual
     const today = new Date();
     const yyyy = today.getFullYear();
     const mm = String(today.getMonth() + 1).padStart(2, '0');
     const dd = String(today.getDate()).padStart(2, '0');
     dataInput.min = `${yyyy}-${mm}-${dd}`;
+
+    dataInput.addEventListener('change', () => {
+      clearFeedback();
+      if (!dataInput.value) return;
+      const [ano, mes, dia] = dataInput.value.split('-').map(Number);
+      const dataObj = new Date(ano, mes - 1, dia);
+      const diaSemana = dataObj.getDay(); // 0 = Domingo, 5 = Sexta, 6 = Sábado
+
+      if (horarioInput) {
+        if (diaSemana === 0) {
+          horarioInput.max = '23:00';
+        } else if (diaSemana === 5 || diaSemana === 6) {
+          horarioInput.max = '23:59';
+        } else {
+          horarioInput.max = '23:59';
+        }
+      }
+    });
   }
 
   if (formReserva) {
     formReserva.addEventListener('submit', (e) => {
       e.preventDefault();
+      clearFeedback();
 
       const nomeInput = document.getElementById('reserva-nome');
-      const horarioInput = document.getElementById('reserva-horario');
       const pessoasInput = document.getElementById('reserva-pessoas');
       const obsInput = document.getElementById('reserva-obs');
 
@@ -965,25 +842,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const obs = obsInput ? obsInput.value.trim().slice(0, 200) : '';
 
       if (!nome) {
-        alert('Por favor, informe seu nome completo.');
+        showFeedback('Por favor, informe seu nome completo.');
         if (nomeInput) nomeInput.focus();
         return;
       }
 
       if (!data) {
-        alert('Por favor, selecione a data desejada para a reserva.');
+        showFeedback('Por favor, selecione a data desejada para a reserva.');
         if (dataInput) dataInput.focus();
         return;
       }
 
       if (!horario) {
-        alert('Por favor, selecione o horário pretendido.');
+        showFeedback('Por favor, selecione o horário pretendido.');
         if (horarioInput) horarioInput.focus();
         return;
       }
 
       if (!pessoas) {
-        alert('Por favor, selecione a quantidade de pessoas.');
+        showFeedback('Por favor, selecione a quantidade de pessoas.');
         if (pessoasInput) pessoasInput.focus();
         return;
       }
@@ -996,13 +873,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const agoraMinutos = now.getHours() * 60 + now.getMinutes();
         const reservaMinutos = hora * 60 + (minuto || 0);
         if (reservaMinutos < agoraMinutos) {
-          alert('O horário selecionado já passou para o dia de hoje. Por favor, escolha um horário futuro.');
+          showFeedback('O horário selecionado já passou para o dia de hoje. Escolha um horário futuro.');
           if (horarioInput) horarioInput.focus();
           return;
         }
       }
 
-      // Formata data de AAAA-MM-DD para DD/MM/AAAA
       let dataFormatada = data;
       if (data && data.includes('-')) {
         const parts = data.split('-');
@@ -1030,11 +906,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const mensagemPronta = linhas.join('\n');
       const whatsappUrl = getWhatsAppUrl(mensagemPronta);
 
-      const openedWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-      if (!openedWindow || openedWindow.closed || typeof openedWindow.closed === 'undefined') {
-        window.location.href = whatsappUrl;
-      }
+      showFeedback('Pronto! Redirecionando para o WhatsApp oficial...', false);
+
+      setTimeout(() => {
+        const openedWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        if (!openedWindow || openedWindow.closed || typeof openedWindow.closed === 'undefined') {
+          window.location.href = whatsappUrl;
+        }
+      }, 300);
     });
+  }
+
+  /* --- 12. ATUALIZAÇÃO AUTOMÁTICA DO ANO NO RODAPÉ --- */
+  const footerYearEl = document.getElementById('footer-year');
+  if (footerYearEl) {
+    footerYearEl.textContent = new Date().getFullYear();
   }
 
 });

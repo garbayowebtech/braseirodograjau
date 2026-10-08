@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#0e0a08"/>
+  <circle cx="32" cy="32" r="28" fill="none" stroke="#D4921F" stroke-width="2" stroke-opacity="0.3"/>
+  <path d="M32 10 C32 10, 42 22, 42 32 C42 41, 35 48, 32 48 C29 48, 22 41, 22 32 C22 22, 32 10, 32 10 Z" fill="url(#fireGrad)"/>
+  <path d="M32 24 C32 24, 38 31, 38 37 C38 42, 34 45, 32 45 C30 45, 26 42, 26 37 C26 31, 32 24, 32 24 Z" fill="#F6D365"/>
+  <defs>
+    <linearGradient id="fireGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F6D365"/>
+      <stop offset="35%" stop-color="#D4921F"/>
+      <stop offset="80%" stop-color="#9B2A1A"/>
+      <stop offset="100%" stop-color="#7A1E12"/>
+    </linearGradient>
+  </defs>
+</svg>

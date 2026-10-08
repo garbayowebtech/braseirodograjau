@@ -13,9 +13,11 @@
 
   <!-- Favicons e Manifest -->
   <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
+  <link rel="preload" as="image" fetchpriority="high" href="assets/hero_background.webp">
 
   <!-- Open Graph / Redes Sociais -->
   <meta property="og:type" content="website">
@@ -40,10 +42,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="stylesheet" href="css/global.css?v=20">
-  <link rel="stylesheet" href="css/navbar.css?v=20">
-  <link rel="stylesheet" href="css/sections.css?v=20">
-  <link rel="stylesheet" href="css/footer.css?v=20">
+  <link rel="stylesheet" href="css/global.css?v=22">
+  <link rel="stylesheet" href="css/navbar.css?v=22">
+  <link rel="stylesheet" href="css/sections.css?v=22">
+  <link rel="stylesheet" href="css/footer.css?v=22">
 
   <!-- Schema Estruturado JSON-LD (LocalBusiness / Restaurant) -->
   <script type="application/ld+json">
@@ -110,7 +112,7 @@
 <body data-wa="55219XXXXXXXX">
   <a href="#inicio" class="skip-link">Pular para o conteúdo principal</a>
 
-  <!-- ===== HEADER (Schmidt-Villares style) ===== -->
+  <!-- ===== HEADER ===== -->
   <header class="header" id="header">
     <div class="container">
       <nav class="nav" aria-label="Navegação Principal">
@@ -141,7 +143,7 @@
       <div class="hero__container">
         <h1 class="hero__title" id="heroTitle">
           <span class="sr-only">Braseiro do Grajaú - Churrasco na Brasa, Chope Gelado e Petiscos no Grajaú, RJ</span>
-          <span class="hero__title-typed" id="heroTypedText" aria-hidden="true">Churrasco de verdade é feito na <span class="highlight fire-text">Brasa</span>.</span><span class="typing-cursor" aria-hidden="true">|</span>
+          <span class="hero__title-typed" id="heroTypedText" aria-hidden="true">Churrasco de <br class="hero-br">verdade é feito <br class="hero-br">na <span class="highlight fire-text">Brasa</span>.</span><span class="typing-cursor" aria-hidden="true">|</span>
         </h1>
         <p class="hero__tagline">
           Os melhores cortes na brasa, chope incrivelmente gelado, petiscos deliciosos servidos com fartura e ambiente acolhedor. Tudo isso na esquina mais charmosa do Grajaú, sob o cartão postal do nosso bairro.
@@ -267,12 +269,13 @@
           <button class="tab-btn" data-tab="chope" role="tab" aria-selected="false" id="tab-btn-chope"><i class="fas fa-beer"></i> Chope &amp; Bebidas</button>
           <button class="tab-btn" data-tab="petiscos" role="tab" aria-selected="false" id="tab-btn-petiscos"><i class="fas fa-drumstick-bite"></i> Petiscos</button>
         </div>
-        <div class="tab-panel active" id="tab-tudo" role="tabpanel" aria-labelledby="tab-btn-tudo">
+                <div class="tab-panel active" id="tab-cardapio" role="tabpanel" aria-labelledby="tab-btn-tudo">
           <div class="cardapio__carousel-container">
-            <div class="cardapio__carousel-track" id="track-tudo" tabindex="0" role="region" aria-label="Carrossel de pratos completos">
-              <article class="menu-card">
+            <div class="cardapio__carousel-track" id="track-cardapio" tabindex="0" role="region" aria-label="Carrossel de pratos do cardápio">
+              <!-- Carnes na Brasa -->
+              <article class="menu-card" data-category="carnes">
                 <div class="menu-card__img-wrap">
-                  <img src="assets/churrasco_picanha.webp" alt="Picanha na brasa - melhor churrasco Grajaú RJ" class="menu-card__img" width="280" height="200" loading="lazy">
+                  <img src="assets/churrasco_picanha.webp" alt="Picanha fatiada grelhada na brasa de carvão com farofa e vinagrete" class="menu-card__img" width="280" height="200" loading="lazy">
                   <span class="menu-card__badge">Destaque</span>
                 </div>
                 <div class="menu-card__body">
@@ -280,27 +283,27 @@
                   <p class="menu-card__desc">A rainha do churrasco! Picanha selecionada preparada na brasa de carvão, com aquele sabor autêntico que você não esquece. Acompanha farofa, vinagrete e arroz.</p>
                 </div>
               </article>
-              <article class="menu-card">
+              <article class="menu-card" data-category="carnes">
                 <div class="menu-card__img-wrap">
-                  <img src="assets/churrasco_fraldinha.webp" alt="Fraldinha na brasa - churrasco na brasa no Grajaú RJ" class="menu-card__img" width="280" height="200" loading="lazy">
+                  <img src="assets/churrasco_fraldinha.webp" alt="Fraldinha macia assada na brasa com tempero especial" class="menu-card__img" width="280" height="200" loading="lazy">
                 </div>
                 <div class="menu-card__body">
                   <h3 class="menu-card__title">Fraldinha na Brasa</h3>
                   <p class="menu-card__desc">Fraldinha macia e suculenta, temperada e assada na brasa no ponto certo. Uma das queridinhas do cardápio de carne na brasa do Grajaú.</p>
                 </div>
               </article>
-              <article class="menu-card">
+              <article class="menu-card" data-category="carnes">
                 <div class="menu-card__img-wrap">
-                  <img src="assets/ambiente_restaurante.webp" alt="Costela na brasa - churrascaria Grajaú zona norte RJ" class="menu-card__img" width="280" height="200" loading="lazy">
+                  <img src="assets/ambiente_restaurante.webp" alt="Costela bovina assada lentamente na brasa" class="menu-card__img" width="280" height="200" loading="lazy">
                 </div>
                 <div class="menu-card__body">
                   <h3 class="menu-card__title">Costela de Janela</h3>
                   <p class="menu-card__desc">Costela cozida lentamente na brasa por horas, desmanchando na boca. Um clássico da churrascaria de ambiente familiar no Grajaú.</p>
                 </div>
               </article>
-              <article class="menu-card">
+              <article class="menu-card" data-category="carnes">
                 <div class="menu-card__img-wrap">
-                  <img src="assets/churrasco_picanha.webp" alt="Assado de Tira na brasa - carne nobre Grajaú RJ" class="menu-card__img" width="280" height="200" loading="lazy">
+                  <img src="assets/churrasco_picanha.webp" alt="Assado de tira grelhado com chimichurri artesanal" class="menu-card__img" width="280" height="200" loading="lazy">
                   <span class="menu-card__badge">Especial</span>
                 </div>
                 <div class="menu-card__body">
@@ -309,77 +312,78 @@
                 </div>
               </article>
 
-              <article class="menu-card">
+              <!-- Chope & Bebidas -->
+              <article class="menu-card" data-category="chope">
                 <div class="menu-card__img-wrap">
-                  <img src="assets/chope_gelado.webp" alt="Chope gelado no Grajaú - melhor chope da zona norte RJ" class="menu-card__img" width="280" height="200" loading="lazy">
+                  <img src="assets/chope_gelado.webp" alt="Chope claro gelado servido com colarinho cremoso" class="menu-card__img" width="280" height="200" loading="lazy">
                   <span class="menu-card__badge">Geladíssimo</span>
                 </div>
                 <div class="menu-card__body">
                   <h3 class="menu-card__title">Chope Gelado</h3>
-                  <p class="menu-card__desc">O chope mais gelado do Grajaú! Tirado na temperatura ideal, com colarinho cremoso. Happy hour todo dia com chope e churrasco no Grajaú.</p>
+                  <p class="menu-card__desc">O chope mais gelado do Grajaú! Tirado na temperatura ideal, com colarinho cremoso. Perfeito para celebrar bons momentos com amigos.</p>
                 </div>
               </article>
-              <article class="menu-card">
+              <article class="menu-card" data-category="chope">
                 <div class="menu-card__img-wrap">
-                  <img src="assets/chope_gelado.webp" alt="Long neck cerveja gelada no bar Grajaú RJ" class="menu-card__img" width="280" height="200" loading="lazy">
+                  <img src="assets/chope_gelado.webp" alt="Cervejas e long necks artesanais servidas geladas" class="menu-card__img" width="280" height="200" loading="lazy">
                 </div>
                 <div class="menu-card__body">
-                  <h3 class="menu-card__title">Long Neck &amp; Garrafas</h3>
-                  <p class="menu-card__desc">Variedade de cervejas especiais, artesanais e tradicionais sempre na temperatura perfeita para acompanhar seu churrasco.</p>
+                  <h3 class="menu-card__title">Cervejas &amp; Long Necks</h3>
+                  <p class="menu-card__desc">Cervejas tradicionais, artesanais e opções puro malte servidas trincando de geladas. O acompanhamento perfeito para os cortes na brasa.</p>
                 </div>
               </article>
-              <article class="menu-card">
+              <article class="menu-card" data-category="chope">
                 <div class="menu-card__img-wrap">
-                  <img src="assets/ambiente_restaurante.webp" alt="Caipirinhas e drinks no bar Braseiro Grajaú" class="menu-card__img" width="280" height="200" loading="lazy">
+                  <img src="assets/ambiente_restaurante.webp" alt="Caipirinhas e batidas refrescantes preparadas na hora" class="menu-card__img" width="280" height="200" loading="lazy">
                 </div>
                 <div class="menu-card__body">
-                  <h3 class="menu-card__title">Caipirinhas da Casa</h3>
-                  <p class="menu-card__desc">Caipirinhas com cachaça artesanal ou vodca e frutas frescas selecionadas. Perfeitas para acompanhar aquele petisco saboroso.</p>
+                  <h3 class="menu-card__title">Caipirinhas &amp; Batidas</h3>
+                  <p class="menu-card__desc">Caipirinhas clássicas de limão e frutas da estação com cachaça selecionada ou vodca de qualidade. Refrescância e sabor no clima do bairro.</p>
                 </div>
               </article>
-              <article class="menu-card">
+              <article class="menu-card" data-category="chope">
                 <div class="menu-card__img-wrap">
-                  <img src="assets/chope_gelado.webp" alt="Drinks autorais e gin tônicas no Grajaú" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Novidade</span>
+                  <img src="assets/chope_gelado.webp" alt="Drinks artesanais e gin tônica com especiarias" class="menu-card__img" width="280" height="200" loading="lazy">
                 </div>
                 <div class="menu-card__body">
-                  <h3 class="menu-card__title">Drinks Autorais &amp; Gin</h3>
-                  <p class="menu-card__desc">Gins premium combinados com botânicos aromáticos, infusões caseiras e tônica refrescante para brindar noites agradáveis.</p>
+                  <h3 class="menu-card__title">Drinks &amp; Gin</h3>
+                  <p class="menu-card__desc">Gin tônicas aromáticas com especiarias e coquetéis clássicos preparados por quem entende de bar. Para celebrar qualquer momento especial.</p>
                 </div>
               </article>
 
-              <article class="menu-card">
+              <!-- Petiscos -->
+              <article class="menu-card" data-category="petiscos">
                 <div class="menu-card__img-wrap">
-                  <img src="assets/petiscos_bar.webp" alt="Carne de sol com aipim - petisco do bar no Grajaú RJ" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Famoso</span>
+                  <img src="assets/petiscos_bar.webp" alt="Porção de carne de sol acebolada com aipim frito crocante" class="menu-card__img" width="280" height="200" loading="lazy">
+                  <span class="menu-card__badge">Queridinho</span>
                 </div>
                 <div class="menu-card__body">
                   <h3 class="menu-card__title">Carne de Sol com Aipim</h3>
                   <p class="menu-card__desc">A porção mais pedida! Carne de sol desfiada com aipim frito crocante e vinagrete. Tira-gosto perfeito para acompanhar o chope gelado no Grajaú.</p>
                 </div>
               </article>
-              <article class="menu-card">
+              <article class="menu-card" data-category="petiscos">
                 <div class="menu-card__img-wrap">
-                  <img src="assets/petiscos_bar.webp" alt="Calabresa acebolada petisco bar Grajaú zona norte" class="menu-card__img" width="280" height="200" loading="lazy">
+                  <img src="assets/petiscos_bar.webp" alt="Calabresa artesanal fatiada e salteada com cebola caramelizada" class="menu-card__img" width="280" height="200" loading="lazy">
                 </div>
                 <div class="menu-card__body">
                   <h3 class="menu-card__title">Calabresa Acebolada</h3>
                   <p class="menu-card__desc">Calabresa artesanal fatiada e grelhada com cebola caramelizada. Um clássico do boteco carioca perfeito com chope gelado.</p>
                 </div>
               </article>
-              <article class="menu-card">
+              <article class="menu-card" data-category="petiscos">
                 <div class="menu-card__img-wrap">
-                  <img src="assets/petiscos_bar.webp" alt="Croquetes bolinhos petiscos happy hour Grajaú RJ" class="menu-card__img" width="280" height="200" loading="lazy">
+                  <img src="assets/petiscos_bar.webp" alt="Croquetes crocantes recheados com carne desfiada suculenta" class="menu-card__img" width="280" height="200" loading="lazy">
                 </div>
                 <div class="menu-card__body">
                   <h3 class="menu-card__title">Porção de Croquetes</h3>
                   <p class="menu-card__desc">Croquetes crocantes por fora e cremosos por dentro, recheados com carne desfiada. Irresistíveis para o happy hour com amigos no Grajaú.</p>
                 </div>
               </article>
-              <article class="menu-card">
+              <article class="menu-card" data-category="petiscos">
                 <div class="menu-card__img-wrap">
-                  <img src="assets/petiscos_bar.webp" alt="Pastéis gourmet do Braseiro do Grajaú" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Crocante</span>
+                  <img src="assets/petiscos_bar.webp" alt="Pastéis crocantes recheados de costela bovina e queijo coalho" class="menu-card__img" width="280" height="200" loading="lazy">
+                  <span class="menu-card__badge">Favorito</span>
                 </div>
                 <div class="menu-card__body">
                   <h3 class="menu-card__title">Pastéis do Braseiro</h3>
@@ -388,152 +392,14 @@
               </article>
             </div>
           </div>
-          <div class="carousel-dots" id="dots-tudo" role="tablist" aria-label="Navegação do carrossel Tudo"></div>
-        </div>
-
-        <div class="tab-panel" id="tab-carnes" role="tabpanel" aria-labelledby="tab-btn-carnes">
-          <div class="cardapio__carousel-container">
-            <div class="cardapio__carousel-track" id="track-carnes" tabindex="0" role="region" aria-label="Carrossel de carnes na brasa">
-              <article class="menu-card">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/churrasco_picanha.webp" alt="Picanha na brasa - melhor churrasco Grajaú RJ" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Destaque</span>
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Picanha na Brasa</h3>
-                  <p class="menu-card__desc">A rainha do churrasco! Picanha selecionada preparada na brasa de carvão, com aquele sabor autêntico que você não esquece. Acompanha farofa, vinagrete e arroz.</p>
-                </div>
-              </article>
-              <article class="menu-card">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/churrasco_fraldinha.webp" alt="Fraldinha na brasa - churrasco na brasa no Grajaú RJ" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Fraldinha na Brasa</h3>
-                  <p class="menu-card__desc">Fraldinha macia e suculenta, temperada e assada na brasa no ponto certo. Uma das queridinhas do cardápio de carne na brasa do Grajaú.</p>
-                </div>
-              </article>
-              <article class="menu-card">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/ambiente_restaurante.webp" alt="Costela na brasa - churrascaria Grajaú zona norte RJ" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Costela de Janela</h3>
-                  <p class="menu-card__desc">Costela cozida lentamente na brasa por horas, desmanchando na boca. Um clássico da churrascaria de ambiente familiar no Grajaú.</p>
-                </div>
-              </article>
-              <article class="menu-card">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/churrasco_picanha.webp" alt="Assado de Tira na brasa - carne nobre Grajaú RJ" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Especial</span>
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Assado de Tira</h3>
-                  <p class="menu-card__desc">Corte nobre com marmoreio perfeito, grelhado na brasa bem viva. Suculência incomparável com sal grosso e chimichurri artesanal.</p>
-                </div>
-              </article>
-            </div>
-          </div>
-          <div class="carousel-dots" id="dots-carnes" role="tablist" aria-label="Navegação do carrossel Carnes"></div>
-        </div>
-
-        <div class="tab-panel" id="tab-chope" role="tabpanel" aria-labelledby="tab-btn-chope">
-          <div class="cardapio__carousel-container">
-            <div class="cardapio__carousel-track" id="track-chope" tabindex="0" role="region" aria-label="Carrossel de chope e bebidas">
-              <article class="menu-card">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/chope_gelado.webp" alt="Chope gelado no Grajaú - melhor chope da zona norte RJ" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Geladíssimo</span>
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Chope Gelado</h3>
-                  <p class="menu-card__desc">O chope mais gelado do Grajaú! Tirado na temperatura ideal, com colarinho cremoso. Happy hour todo dia com chope e churrasco no Grajaú.</p>
-                </div>
-              </article>
-              <article class="menu-card">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/chope_gelado.webp" alt="Long neck cerveja gelada no bar Grajaú RJ" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Long Neck &amp; Garrafas</h3>
-                  <p class="menu-card__desc">Variedade de cervejas especiais, artesanais e tradicionais sempre na temperatura perfeita para acompanhar seu churrasco.</p>
-                </div>
-              </article>
-              <article class="menu-card">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/ambiente_restaurante.webp" alt="Caipirinhas e drinks no bar Braseiro Grajaú" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Caipirinhas da Casa</h3>
-                  <p class="menu-card__desc">Caipirinhas com cachaça artesanal ou vodca e frutas frescas selecionadas. Perfeitas para acompanhar aquele petisco saboroso.</p>
-                </div>
-              </article>
-              <article class="menu-card">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/chope_gelado.webp" alt="Drinks autorais e gin tônicas no Grajaú" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Novidade</span>
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Drinks Autorais &amp; Gin</h3>
-                  <p class="menu-card__desc">Gins premium combinados com botânicos aromáticos, infusões caseiras e tônica refrescante para brindar noites agradáveis.</p>
-                </div>
-              </article>
-            </div>
-          </div>
-          <div class="carousel-dots" id="dots-chope" role="tablist" aria-label="Navegação do carrossel Chope"></div>
-        </div>
-
-        <div class="tab-panel" id="tab-petiscos" role="tabpanel" aria-labelledby="tab-btn-petiscos">
-          <div class="cardapio__carousel-container">
-            <div class="cardapio__carousel-track" id="track-petiscos" tabindex="0" role="region" aria-label="Carrossel de petiscos">
-              <article class="menu-card">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/petiscos_bar.webp" alt="Carne de sol com aipim - petisco do bar no Grajaú RJ" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Famoso</span>
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Carne de Sol com Aipim</h3>
-                  <p class="menu-card__desc">A porção mais pedida! Carne de sol desfiada com aipim frito crocante e vinagrete. Tira-gosto perfeito para acompanhar o chope gelado no Grajaú.</p>
-                </div>
-              </article>
-              <article class="menu-card">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/petiscos_bar.webp" alt="Calabresa acebolada petisco bar Grajaú zona norte" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Calabresa Acebolada</h3>
-                  <p class="menu-card__desc">Calabresa artesanal fatiada e grelhada com cebola caramelizada. Um clássico do boteco carioca perfeito com chope gelado.</p>
-                </div>
-              </article>
-              <article class="menu-card">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/petiscos_bar.webp" alt="Croquetes bolinhos petiscos happy hour Grajaú RJ" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Porção de Croquetes</h3>
-                  <p class="menu-card__desc">Croquetes crocantes por fora e cremosos por dentro, recheados com carne desfiada. Irresistíveis para o happy hour com amigos no Grajaú.</p>
-                </div>
-              </article>
-              <article class="menu-card">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/petiscos_bar.webp" alt="Pastéis gourmet do Braseiro do Grajaú" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Crocante</span>
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Pastéis do Braseiro</h3>
-                  <p class="menu-card__desc">Pastéis sequinhos e generosamente recheados com costela bovina desfiada e queijo coalho com melaço. Sucesso absoluto da mesa.</p>
-                </div>
-              </article>
-            </div>
-          </div>
-          <div class="carousel-dots" id="dots-petiscos" role="tablist" aria-label="Navegação do carrossel Petiscos"></div>
+          <div class="carousel-dots" id="dots-cardapio" aria-label="Navegação do carrossel do cardápio"></div>
         </div>
         <div class="cardapio__cta-block animate-fade-up">
           <button type="button" class="btn btn--primary btn--lg" id="btn-abrir-cardapio-completo" aria-label="Ver cardápio completo em tela cheia">
             <i class="fas fa-book-open"></i> Ver Cardápio Completo
           </button>
           <div class="cardapio__cta-extra">
-            <p style="color:var(--color-text-muted); font-size:0.92rem;">Consulte todos os cortes, guarnições, petiscos e bebidas com fotos e preços.</p>
+            <p class="cardapio__cta-sub">Consulte todos os cortes, guarnições, petiscos e bebidas com fotos e preços.</p>
             <a href="https://www.instagram.com/braseirodograjau/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" id="cardapio-ig-btn">
               <i class="fab fa-instagram"></i> Acompanhe no Instagram
             </a>
@@ -551,30 +417,30 @@
         </div>
         <div class="galeria__carousel-container animate-fade-up animate-delay-3">
           <div class="galeria__carousel-track" id="track-galeria" tabindex="0" role="region" aria-label="Carrossel de fotos da galeria">
-            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: ambiente">
-              <img src="assets/ambiente_restaurante.webp" alt="Ambiente interno do Braseiro do Grajaú - bar e restaurante com brasa e chope no Grajaú RJ" class="galeria__item__img" width="600" height="480" loading="lazy">
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: ambiente acolhedor do restaurante">
+              <img src="assets/ambiente_restaurante.webp" alt="Salão interno acolhedor e mesas do Braseiro do Grajaú" class="galeria__item__img" width="600" height="480" loading="lazy">
               <div class="galeria__item__overlay"><span class="galeria__item__caption">Nosso Ambiente</span></div>
             </div>
-            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: brasa">
-              <img src="assets/churrasco_fraldinha.webp" alt="Churrasco na brasa de carvão - melhor churrasco no Grajaú Rio de Janeiro" class="galeria__item__img" width="400" height="240" loading="lazy">
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: carnes na brasa de carvão">
+              <img src="assets/churrasco_fraldinha.webp" alt="Cortes de carne sendo grelhados na brasa de carvão viva" class="galeria__item__img" width="400" height="240" loading="lazy">
               <div class="galeria__item__overlay"><span class="galeria__item__caption">Brasa Ardente</span></div>
             </div>
-            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: chope">
-              <img src="assets/chope_gelado.webp" alt="Chope gelado no Grajaú - o melhor chope da Zona Norte RJ" class="galeria__item__img" width="400" height="240" loading="lazy">
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: chope gelado tirado na hora">
+              <img src="assets/chope_gelado.webp" alt="Chope gelado servido no balcão do bar" class="galeria__item__img" width="400" height="240" loading="lazy">
               <div class="galeria__item__overlay"><span class="galeria__item__caption">Chope Geladíssimo</span></div>
             </div>
-            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: picanha">
-              <img src="assets/churrasco_picanha.webp" alt="Picanha na brasa - melhor churrasco Grajaú e zona norte Rio de Janeiro" class="galeria__item__img" width="400" height="240" loading="lazy">
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: picanha suculenta na brasa">
+              <img src="assets/churrasco_picanha.webp" alt="Corte nobre de picanha suculenta fatiada na tábua" class="galeria__item__img" width="400" height="240" loading="lazy">
               <div class="galeria__item__overlay"><span class="galeria__item__caption">Picanha na Brasa</span></div>
             </div>
-            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: petiscos">
-              <img src="assets/petiscos_bar.webp" alt="Petiscos de bar - carne de sol aipim porções tira-gosto no Grajaú RJ" class="galeria__item__img" width="400" height="240" loading="lazy">
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: porção de petiscos variados">
+              <img src="assets/petiscos_bar.webp" alt="Tábua variada com petiscos e tira-gostos tradicionais" class="galeria__item__img" width="400" height="240" loading="lazy">
               <div class="galeria__item__overlay"><span class="galeria__item__caption">Petiscos do Bar</span></div>
             </div>
           </div>
-          <div class="carousel-dots galeria-dots" role="tablist" aria-label="Navegação da galeria"></div>
+          <div class="carousel-dots galeria-dots" aria-label="Navegação da galeria"></div>
         </div>
-        <div style="text-align:center; margin-top:2.5rem;" class="animate-fade-up">
+        <div class="galeria__cta-wrap animate-fade-up">
           <a href="https://www.instagram.com/braseirodograjau/" target="_blank" rel="noopener" class="btn btn--primary" id="galeria-ig-btn">
             <i class="fab fa-instagram"></i> Mais fotos no @braseirodograjau
           </a>
@@ -638,11 +504,13 @@
 
             <div class="reservas__form-container">
               <form class="reservas__form" id="formReserva" novalidate>
+                <div id="reserva-feedback" class="form-feedback" role="alert" aria-live="polite"></div>
+
                 <div class="form-group">
                   <label for="reserva-nome">
                     <i class="fas fa-user"></i> Nome Completo <span class="required">*</span>
                   </label>
-                  <input type="text" id="reserva-nome" name="nome" placeholder="Ex: Carlos Oliveira" required autocomplete="name">
+                  <input type="text" id="reserva-nome" name="nome" placeholder="Ex: Carlos Oliveira" required autocomplete="name" maxlength="100">
                 </div>
 
                 <div class="form-row">
@@ -680,7 +548,7 @@
                   <label for="reserva-obs">
                     <i class="fas fa-comment-alt"></i> Observações ou Ocasião <span class="optional">(Opcional)</span>
                   </label>
-                  <textarea id="reserva-obs" name="obs" rows="2" placeholder="Ex: Aniversário, mesa na área externa, cadeirão infantil..."></textarea>
+                  <textarea id="reserva-obs" name="obs" rows="2" placeholder="Ex: Aniversário, mesa na área externa, cadeirão infantil..." maxlength="200"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn--whatsapp btn--lg reservas__btn-submit" id="btnSubmitReserva">
@@ -709,7 +577,7 @@
             <div class="contato__icon"><i class="fas fa-map-marker-alt"></i></div>
             <div class="contato__detail">
               <strong>Endereço</strong>
-              <p>Rua Grajaú, n. 247<br>Esquina com Rua Canavieiras<br>Grajaú, Rio de Janeiro - RJ<br><span style="color:var(--color-gold);font-weight:600;">CEP: 20561-144</span></p>
+              <p>Rua Grajaú, n. 247<br>Esquina com Rua Canavieiras<br>Grajaú, Rio de Janeiro - RJ<br><span class="contato__cep">CEP: 20561-144</span></p>
             </div>
           </div>
           <div class="contato__card animate-fade-up animate-delay-2">
@@ -792,21 +660,21 @@
           <div class="footer__address-row">
             <i class="fas fa-map-marker-alt"></i>
             <div>
-              <strong style="color:var(--color-amber);font-size:0.82rem;">Endereço</strong><br>
+              <strong class="footer__label">Endereço</strong><br>
               Rua Grajaú, n. 247 - Esquina com Rua Canavieiras<br>Grajaú, Rio de Janeiro - RJ<br>CEP 20561-144
             </div>
           </div>
           <div class="footer__address-row">
             <i class="fas fa-clock"></i>
             <div>
-              <strong style="color:var(--color-amber);font-size:0.82rem;">Horários</strong><br>
+              <strong class="footer__label">Horários</strong><br>
               Seg a Qui: 11h - 00h<br>Sex e Sáb: 11h - 01h<br>Dom: 11h - 23h
             </div>
           </div>
           <div class="footer__address-row">
             <i class="fab fa-instagram"></i>
             <div>
-              <strong style="color:var(--color-amber);font-size:0.82rem;">Instagram</strong><br>
+              <strong class="footer__label">Instagram</strong><br>
               <a href="https://www.instagram.com/braseirodograjau/" target="_blank" rel="noopener" id="ftr-ig-link">@braseirodograjau</a>
             </div>
           </div>
@@ -814,7 +682,7 @@
       </div>
       <div class="footer__bottom">
         <p>
-          &copy; 2026 Braseiro do Grajaú - Brasa, Malte e Petiscaria.
+          &copy; <span id="footer-year">2026</span> Braseiro do Grajaú - Brasa, Malte e Petiscaria.
           Rua Grajaú, 247 - esquina c/ Rua Canavieiras, Grajaú, Rio de Janeiro - RJ (CEP 20561-144).<br>
           Desenvolvido por <a href="https://garbayowebtech.com" target="_blank" rel="noopener">Garbayo Web &amp; Technology</a>
         </p>
@@ -849,7 +717,7 @@
         <div class="modal-cardapio__view" id="view-cardapio-frente">
           <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" data-src="assets/cardapio_frente.webp" alt="Cardápio completo Braseiro do Grajaú - Frente: Carnes na brasa, guarnições e pratos principais" class="modal-cardapio__img" width="1414" height="2000">
         </div>
-        <div class="modal-cardapio__view" id="view-cardapio-verso" style="display: none;">
+        <div class="modal-cardapio__view modal-cardapio__view--hidden" id="view-cardapio-verso">
           <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" data-src="assets/cardapio_verso.webp" alt="Cardápio completo Braseiro do Grajaú - Verso: Chopes, bebidas, petiscos e sobremesas" class="modal-cardapio__img" width="1414" height="2000">
         </div>
       </div>
@@ -890,11 +758,11 @@
     <i class="fas fa-chevron-up"></i>
   </button>
 
-  <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
-    <p><strong>Usamos cookies</strong> para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="#" id="cookiePolicyLink" style="color:var(--color-amber);">política de privacidade</a>.</p>
+  <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de privacidade e navegação">
+    <p><strong>Privacidade &amp; Navegação:</strong> Utilizamos armazenamento local essencial para registrar suas preferências de navegação. Saiba mais em nossa <a href="privacidade.html" id="cookiePolicyLink" class="cookie-policy-link">política de privacidade</a>.</p>
     <button id="cookie-accept" class="btn-cookie" aria-label="Aceitar cookies">Entendi <i class="fas fa-check"></i></button>
   </div>
 
-  <script src="js/main.js?v=20" defer></script>
+  <script src="js/main.js?v=22" defer></script>
 </body>
 </html>

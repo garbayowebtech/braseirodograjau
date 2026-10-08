@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://braseirodograjau.com.br/</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-08</lastmod>
+    <image:image>
+      <image:loc>https://braseirodograjau.com.br/assets/og-cover.jpg</image:loc>
+      <image:title>Braseiro do Grajaú - Churrasco na Brasa e Chope no Grajaú</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://braseirodograjau.com.br/assets/hero_background.webp</image:loc>
+      <image:title>Pedra do Grajaú ao pôr do sol no Braseiro do Grajaú</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://braseirodograjau.com.br/assets/churrasco_picanha.webp</image:loc>
+      <image:title>Picanha na Brasa no Braseiro do Grajaú</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://braseirodograjau.com.br/assets/chope_gelado.webp</image:loc>
+      <image:title>Chope Gelado no Grajaú</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://braseirodograjau.com.br/privacidade.html</loc>
+    <lastmod>2026-10-08</lastmod>
   </url>
 </urlset>
