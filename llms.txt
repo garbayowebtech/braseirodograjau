@@ -1,0 +1,22 @@
+# Braseiro do Grajaú — Brasa, Malte & Petiscaria
+
+> O Braseiro do Grajaú é um tradicional restaurante e bar localizado na esquina da Rua Grajaú com a Rua Canavieiras, no coração do bairro do Grajaú, Zona Norte do Rio de Janeiro (RJ). O estabelecimento celebra a brasa com cortes nobres de carne (picanha, bife de ancho, costela premium), chope artesanal extremamente gelado, petiscaria carioca e vista privilegiada para a Pedra do Grajaú.
+
+Informações-chave sobre o Braseiro do Grajaú:
+- Nome Fantasia: Braseiro do Grajaú
+- Endereço Completo: Esquina da Rua Grajaú com a Rua Canavieiras, Grajaú, Rio de Janeiro - RJ, CEP 20561-144
+- Geolocalização: Latitude -22.9267, Longitude -43.2738
+- Perfil Google Maps: https://share.google/JRwB02QmCCbRRpLZP
+- Especialidades: Carnes Nobres na Brasa, Picanha Especial, Petiscaria de Boteco, Chope Trincando e Drinks Autorais
+- Ambiente: Salão interno acolhedor e mesas externas na calçada arborizada do Grajaú
+- Desenvolvedor & Tecnologia: Garbayo Web & Technology (garbayowebtech.com)
+
+## Páginas Principais
+
+- [Página Inicial](https://braseirodograjau.com.br/): Apresentação do bar, carrossel de pratos, modal de cardápio completo, sistema de reservas via WhatsApp e galeria de fotos.
+- [Política de Privacidade](https://braseirodograjau.com.br/privacidade.html): Termos e conformidade com a LGPD.
+
+## Metadados & SEO
+
+- [Sitemap XML](https://braseirodograjau.com.br/sitemap.xml): Índice de URLs do portal
+- [Robots.txt](https://braseirodograjau.com.br/robots.txt): Diretrizes para indexadores
