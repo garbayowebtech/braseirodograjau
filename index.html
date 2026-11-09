@@ -44,8 +44,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="css/global.css?v=22">
   <link rel="stylesheet" href="css/navbar.css?v=22">
-  <link rel="stylesheet" href="css/sections.css?v=22">
-  <link rel="stylesheet" href="css/footer.css?v=22">
+  <link rel="stylesheet" href="css/sections.css?v=26">
+  <link rel="stylesheet" href="css/footer.css?v=26">
 
   <!-- Schema Estruturado JSON-LD (LocalBusiness / Restaurant) -->
   <script type="application/ld+json">
@@ -59,7 +59,7 @@
     "url": "https://braseirodograjau.com.br/",
     "image": ["https://braseirodograjau.com.br/assets/og-cover.jpg"],
     "logo": "https://braseirodograjau.com.br/assets/logo_braseiro.png",
-    "telephone": "+55-21-9XXXXXXXX",
+    "telephone": "+55-21-98490-4526",
     "servesCuisine": ["Churrascaria", "Brasileira", "Petiscos de Bar"],
     "priceRange": "$$",
     "hasMenu": "https://braseirodograjau.com.br/#cardapio",
@@ -109,7 +109,7 @@
   }
   </script>
 </head>
-<body data-wa="55219XXXXXXXX">
+<body data-wa="5521984904526">
   <a href="#inicio" class="skip-link">Pular para o conteúdo principal</a>
 
   <!-- ===== HEADER ===== -->
@@ -226,7 +226,7 @@
       <div class="container">
         <div class="sobre__grid">
           <div class="sobre__video-wrap animate-fade-up">
-            <video class="sobre__video" muted loop playsinline preload="none" poster="assets/ambiente_restaurante.webp" data-src="assets/sobre_section.mp4" aria-hidden="true"></video>
+            <video class="sobre__video" muted loop playsinline preload="none" poster="assets/galeria/1.png" data-src="assets/sobre_section.mp4" aria-hidden="true"></video>
             <div class="sobre__badge-float" aria-hidden="true">
               <span class="badge-icon">&#128293;</span>
               <div class="badge-text">
@@ -261,145 +261,1246 @@
         <div class="section-header">
           <div class="section-tag animate-fade-up"><i class="fas fa-utensils"></i> Cardápio</div>
           <h2 class="section-title animate-fade-up animate-delay-1">O que tem na <span>brasa</span> hoje?</h2>
-          <p class="section-subtitle animate-fade-up animate-delay-2">Carnes nobres, petiscos irresistíveis e o chope mais gelado do Grajaú. Tem pra todos os gostos!</p>
+          <p class="section-subtitle animate-fade-up animate-delay-2">Churrascos, galetos, pizzas, hambúrgueres, petiscos, chopes e muito mais. Escolha uma categoria e confira nossos pratos e preços.</p>
         </div>
-        <div class="cardapio__tabs animate-fade-up animate-delay-3" role="tablist">
-          <button class="tab-btn active" data-tab="tudo" role="tab" aria-selected="true" id="tab-btn-tudo"><i class="fas fa-border-all"></i> Tudo</button>
-          <button class="tab-btn" data-tab="carnes" role="tab" aria-selected="false" id="tab-btn-carnes"><i class="fas fa-fire"></i> Carnes na Brasa</button>
-          <button class="tab-btn" data-tab="chope" role="tab" aria-selected="false" id="tab-btn-chope"><i class="fas fa-beer"></i> Chope &amp; Bebidas</button>
-          <button class="tab-btn" data-tab="petiscos" role="tab" aria-selected="false" id="tab-btn-petiscos"><i class="fas fa-drumstick-bite"></i> Petiscos</button>
+        <div class="cardapio__tabs animate-fade-up animate-delay-3" role="group" aria-label="Categorias do cardápio">
+          <button type="button" class="tab-btn active" data-tab="churrascos" aria-pressed="true" id="tab-btn-churrascos"><i class="fas fa-fire" aria-hidden="true"></i> Churrascos &amp; Picanhas</button>
+          <button type="button" class="tab-btn" data-tab="galetos" aria-pressed="false" id="tab-btn-galetos"><i class="fas fa-drumstick-bite" aria-hidden="true"></i> Galetos &amp; Filé Mignon</button>
+          <button type="button" class="tab-btn" data-tab="executivos" aria-pressed="false" id="tab-btn-executivos"><i class="fas fa-plate-wheat" aria-hidden="true"></i> Pratos Executivos</button>
+          <button type="button" class="tab-btn" data-tab="petiscos" aria-pressed="false" id="tab-btn-petiscos"><i class="fas fa-bowl-food" aria-hidden="true"></i> Petiscos &amp; Combinados</button>
+          <button type="button" class="tab-btn" data-tab="espetos" aria-pressed="false" id="tab-btn-espetos"><i class="fas fa-fire-burner" aria-hidden="true"></i> Espetos, Pastéis &amp; Caldos</button>
+          <button type="button" class="tab-btn" data-tab="pizzas" aria-pressed="false" id="tab-btn-pizzas"><i class="fas fa-pizza-slice" aria-hidden="true"></i> Pizzas</button>
+          <button type="button" class="tab-btn" data-tab="burgers" aria-pressed="false" id="tab-btn-burgers"><i class="fas fa-burger" aria-hidden="true"></i> Hambúrgueres &amp; Sanduíches</button>
+          <button type="button" class="tab-btn" data-tab="massas" aria-pressed="false" id="tab-btn-massas"><i class="fas fa-bowl-rice" aria-hidden="true"></i> Massas Frescas</button>
+          <button type="button" class="tab-btn" data-tab="guarnicoes" aria-pressed="false" id="tab-btn-guarnicoes"><i class="fas fa-leaf" aria-hidden="true"></i> Guarnições</button>
+          <button type="button" class="tab-btn" data-tab="bebidas" aria-pressed="false" id="tab-btn-bebidas"><i class="fas fa-beer-mug-empty" aria-hidden="true"></i> Chopes &amp; Bebidas</button>
+          <button type="button" class="tab-btn" data-tab="sobremesas" aria-pressed="false" id="tab-btn-sobremesas"><i class="fas fa-ice-cream" aria-hidden="true"></i> Sobremesas</button>
         </div>
-                <div class="tab-panel active" id="tab-cardapio" role="tabpanel" aria-labelledby="tab-btn-tudo">
-          <div class="cardapio__carousel-container">
-            <div class="cardapio__carousel-track" id="track-cardapio" tabindex="0" role="region" aria-label="Carrossel de pratos do cardápio">
-              <!-- Carnes na Brasa -->
-              <article class="menu-card" data-category="carnes">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/churrasco_picanha.webp" alt="Picanha fatiada grelhada na brasa de carvão com farofa e vinagrete" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Destaque</span>
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Picanha na Brasa</h3>
-                  <p class="menu-card__desc">A rainha do churrasco! Picanha selecionada preparada na brasa de carvão, com aquele sabor autêntico que você não esquece. Acompanha farofa, vinagrete e arroz.</p>
-                </div>
-              </article>
-              <article class="menu-card" data-category="carnes">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/churrasco_fraldinha.webp" alt="Fraldinha macia assada na brasa com tempero especial" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Fraldinha na Brasa</h3>
-                  <p class="menu-card__desc">Fraldinha macia e suculenta, temperada e assada na brasa no ponto certo. Uma das queridinhas do cardápio de carne na brasa do Grajaú.</p>
-                </div>
-              </article>
-              <article class="menu-card" data-category="carnes">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/ambiente_restaurante.webp" alt="Costela bovina assada lentamente na brasa" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Costela de Janela</h3>
-                  <p class="menu-card__desc">Costela cozida lentamente na brasa por horas, desmanchando na boca. Um clássico da churrascaria de ambiente familiar no Grajaú.</p>
-                </div>
-              </article>
-              <article class="menu-card" data-category="carnes">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/churrasco_picanha.webp" alt="Assado de tira grelhado com chimichurri artesanal" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Especial</span>
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Assado de Tira</h3>
-                  <p class="menu-card__desc">Corte nobre com marmoreio perfeito, grelhado na brasa bem viva. Suculência incomparável com sal grosso e chimichurri artesanal.</p>
-                </div>
-              </article>
-
-              <!-- Chope & Bebidas -->
-              <article class="menu-card" data-category="chope">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/chope_gelado.webp" alt="Chope claro gelado servido com colarinho cremoso" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Geladíssimo</span>
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Chope Gelado</h3>
-                  <p class="menu-card__desc">O chope mais gelado do Grajaú! Tirado na temperatura ideal, com colarinho cremoso. Perfeito para celebrar bons momentos com amigos.</p>
-                </div>
-              </article>
-              <article class="menu-card" data-category="chope">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/chope_gelado.webp" alt="Cervejas e long necks artesanais servidas geladas" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Cervejas &amp; Long Necks</h3>
-                  <p class="menu-card__desc">Cervejas tradicionais, artesanais e opções puro malte servidas trincando de geladas. O acompanhamento perfeito para os cortes na brasa.</p>
-                </div>
-              </article>
-              <article class="menu-card" data-category="chope">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/ambiente_restaurante.webp" alt="Caipirinhas e batidas refrescantes preparadas na hora" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Caipirinhas &amp; Batidas</h3>
-                  <p class="menu-card__desc">Caipirinhas clássicas de limão e frutas da estação com cachaça selecionada ou vodca de qualidade. Refrescância e sabor no clima do bairro.</p>
-                </div>
-              </article>
-              <article class="menu-card" data-category="chope">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/chope_gelado.webp" alt="Drinks artesanais e gin tônica com especiarias" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Drinks &amp; Gin</h3>
-                  <p class="menu-card__desc">Gin tônicas aromáticas com especiarias e coquetéis clássicos preparados por quem entende de bar. Para celebrar qualquer momento especial.</p>
-                </div>
-              </article>
-
-              <!-- Petiscos -->
-              <article class="menu-card" data-category="petiscos">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/petiscos_bar.webp" alt="Porção de carne de sol acebolada com aipim frito crocante" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Queridinho</span>
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Carne de Sol com Aipim</h3>
-                  <p class="menu-card__desc">A porção mais pedida! Carne de sol desfiada com aipim frito crocante e vinagrete. Tira-gosto perfeito para acompanhar o chope gelado no Grajaú.</p>
-                </div>
-              </article>
-              <article class="menu-card" data-category="petiscos">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/petiscos_bar.webp" alt="Calabresa artesanal fatiada e salteada com cebola caramelizada" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Calabresa Acebolada</h3>
-                  <p class="menu-card__desc">Calabresa artesanal fatiada e grelhada com cebola caramelizada. Um clássico do boteco carioca perfeito com chope gelado.</p>
-                </div>
-              </article>
-              <article class="menu-card" data-category="petiscos">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/petiscos_bar.webp" alt="Croquetes crocantes recheados com carne desfiada suculenta" class="menu-card__img" width="280" height="200" loading="lazy">
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Porção de Croquetes</h3>
-                  <p class="menu-card__desc">Croquetes crocantes por fora e cremosos por dentro, recheados com carne desfiada. Irresistíveis para o happy hour com amigos no Grajaú.</p>
-                </div>
-              </article>
-              <article class="menu-card" data-category="petiscos">
-                <div class="menu-card__img-wrap">
-                  <img src="assets/petiscos_bar.webp" alt="Pastéis crocantes recheados de costela bovina e queijo coalho" class="menu-card__img" width="280" height="200" loading="lazy">
-                  <span class="menu-card__badge">Favorito</span>
-                </div>
-                <div class="menu-card__body">
-                  <h3 class="menu-card__title">Pastéis do Braseiro</h3>
-                  <p class="menu-card__desc">Pastéis sequinhos e generosamente recheados com costela bovina desfiada e queijo coalho com melaço. Sucesso absoluto da mesa.</p>
-                </div>
-              </article>
+        <div class="cardapio__select-wrap animate-fade-up animate-delay-3">
+          <label for="cardapio-select" class="sr-only">Categoria do cardápio</label>
+          <select id="cardapio-select" class="cardapio__select">
+            <option value="churrascos" selected>Churrascos &amp; Picanhas</option>
+            <option value="galetos">Galetos &amp; Filé Mignon</option>
+            <option value="executivos">Pratos Executivos</option>
+            <option value="petiscos">Petiscos &amp; Combinados</option>
+            <option value="espetos">Espetos, Pastéis &amp; Caldos</option>
+            <option value="pizzas">Pizzas</option>
+            <option value="burgers">Hambúrgueres &amp; Sanduíches</option>
+            <option value="massas">Massas Frescas</option>
+            <option value="guarnicoes">Guarnições</option>
+            <option value="bebidas">Chopes &amp; Bebidas</option>
+            <option value="sobremesas">Sobremesas</option>
+          </select>
+        </div>
+        <div class="cardapio__content cardapio__content--single" id="cardapio-content">
+          <section class="cardapio__group" data-category="churrascos" aria-labelledby="cat-churrascos">
+            <h3 class="cardapio__group-title" id="cat-churrascos"><i class="fas fa-fire" aria-hidden="true"></i> Churrascos &amp; Picanhas</h3>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Churrascos p/ 2</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Contrafilé à Campanha</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 119,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz branco, batata frita, farofa de ovo e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Contrafilé Braseiro</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 129,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz de brócolis, batata portuguesa, farofa de ovos e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Alcatra ao Pico</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 109,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Alcatra na brasa, com arroz branco, batata frita, farofa de ovos e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Churrasco Misto Brasa</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 159,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Contrafilé, filé de coxa, lombinho e linguiça toscana. Arroz branco, farofa de ovos, batata frita e molho à campanha.</p>
+                </li>
+              </ul>
             </div>
-          </div>
-          <div class="carousel-dots" id="dots-cardapio" aria-label="Navegação do carrossel do cardápio"></div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Picanhas p/ 2</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Picanha à Campanha</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 169,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz branco, batata frita, farofa de ovo e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Picanha Braseiro</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 179,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz de brócolis, batata frita, farofa de ovos c/ banana e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Picanha do Chef</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 189,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz à grega, batata portuguesa, farofa de ovos c/ banana e molho à campanha.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Churrascos p/ 3</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Churrasco à Campanha</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 179,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz branco, batata frita, farofa de ovos e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Contrafilé Braseiro</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 189,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz de brócolis, batata portuguesa, farofa de ovos e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Churrasco Misto p/ 3</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 219,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Contrafilé, filé de coxa, lombo suíno e linguiça de churrasco. Acompanha arroz branco, farofa de ovos e molho à campanha.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Picanhas p/ 3</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Picanha à Campanha</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 219,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz branco, batata frita, farofa de ovo e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Picanha Braseiro</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 229,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz de brócolis, batata frita, farofa de ovos c/ banana e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Picanha do Chef</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 239,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz à grega, batata portuguesa, farofa de ovos c/ banana e molho à campanha.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Proteínas na Brasa</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">3 Linguiças Fatiadas + 3 Pães de Alho</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 45,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha farofa e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Picanha Bovina 500g</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 89,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha farofa e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Contrafilé do Chef 500g</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 72,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha farofa e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Alcatra 500g</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 69,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha farofa e molho à campanha.</p>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="cardapio__group" data-category="galetos" hidden aria-labelledby="cat-galetos">
+            <h3 class="cardapio__group-title" id="cat-galetos"><i class="fas fa-drumstick-bite" aria-hidden="true"></i> Galetos &amp; Filé Mignon</h3>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Galetos p/ 2</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Galeto à Campanha</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Tradicional</small> <strong>R$ 72,90</strong></span>
+                      <span class="menu-item__variant"><small>Desossado</small> <strong>R$ 82,90</strong></span>
+                    </p>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz branco, batata frita, farofa de ovos e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Galeto Braseiro</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Tradicional</small> <strong>R$ 79,90</strong></span>
+                      <span class="menu-item__variant"><small>Desossado</small> <strong>R$ 85,90</strong></span>
+                    </p>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz c/ brócolis, batata portuguesa, farofa de ovos e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Galeto do Chef</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Tradicional</small> <strong>R$ 82,90</strong></span>
+                      <span class="menu-item__variant"><small>Desossado</small> <strong>R$ 92,90</strong></span>
+                    </p>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz à La Grega, batata portuguesa, farofa de ovos c/ banana e molho à campanha.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Filé Mignon p/ 2</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Filé Mignon Oswaldo Aranha</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 149,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz de brócolis, farofa de ovos, batata portuguesa e molho à campanha.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Filé Mignon à Parmegiana</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 149,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Acompanha arroz branco e batata portuguesa.</p>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="cardapio__group" data-category="executivos" hidden aria-labelledby="cat-executivos">
+            <h3 class="cardapio__group-title" id="cat-executivos"><i class="fas fa-plate-wheat" aria-hidden="true"></i> Pratos Executivos</h3>
+            <div class="cardapio__subgroup">
+              <p class="cardapio__subgroup-note">Apenas sábado e domingo. Todos acompanham feijão, farofa e molho à campanha. Acompanhamentos: arroz branco ou c/ brócolis, batata frita, batata portuguesa, salada verde ou salada de maionese, aipim.</p>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">½ Galeto à Campanha</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 36,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Contrafilé à Campanha</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 42,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Alcatra à Campanha</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 49,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Picanha à Campanha</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 55,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Filé de Coxa</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 32,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Bife à Milanesa</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 42,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Bife à Parmegiana</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 49,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Bife à Cavalo</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 45,90</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="cardapio__group" data-category="petiscos" hidden aria-labelledby="cat-petiscos">
+            <h3 class="cardapio__group-title" id="cat-petiscos"><i class="fas fa-bowl-food" aria-hidden="true"></i> Petiscos &amp; Combinados</h3>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Petiscos e Aperitivos</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Gurjão de Frango na Panco</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 69,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Gurjão de Peixe na Panco</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 79,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Isca de Tilápia na Panco</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 82,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Contrafilé c/ Fritas</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 85,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Batata Frita</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 25,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Aipim Frito</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 27,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Porção c/ 4 Bolões de Bacalhau</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 39,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Porção Mista de Pastéis (Camarão, Queijo e Carne)</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 59,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Provolone à Milanesa</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 60,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Porção de Salaminho</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 36,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Alcatra Acebolada c/ Fritas</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 75,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Picanha Acebolada c/ Fritas</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 95,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Carne Seca c/ Aipim e Queijo Coalho</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 92,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Carne de Sol c/ Aipim e Queijo Coalho</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 92,00</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Combinados do Braseiro</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Batata Braseiro</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 40,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Batata, calabresa e mussarela gratinada.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Batata do Chef</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 40,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Batata, cheddar e bacon.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Casadinho</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 59,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Frango à passarinho c/ fritas.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Namoradinho</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 40,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Batata frita c/ linguiça acebolada.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Tábua Mista</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 79,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Contrafilé, filé de frango, calabresa e batata frita.</p>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="cardapio__group" data-category="espetos" hidden aria-labelledby="cat-espetos">
+            <h3 class="cardapio__group-title" id="cat-espetos"><i class="fas fa-fire-burner" aria-hidden="true"></i> Espetos, Pastéis &amp; Caldos</h3>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Espetos</h4>
+              <p class="cardapio__subgroup-note">Todos acompanham molho e farofa.</p>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Carne</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 20,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Misto</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 20,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Kafta</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 16,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Frango</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 16,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Tulipa (Frango)</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 17,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Queijo Coalho</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 20,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Coração</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 17,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Salsichão</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 12,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Toscana no Espeto</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 15,90</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Pastéis (unidade)</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Carne</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 9,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Queijo</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 9,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Camarão</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 11,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Carne Seca</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 11,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Nutella</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 13,90</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Caldos</h4>
+              <p class="cardapio__subgroup-note">Todos acompanham pão.</p>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Caldo Verde</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 19,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Canja</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 19,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Sopa de Legumes c/ Carne</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 22,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Feijão Amigo</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 15,90</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="cardapio__group" data-category="pizzas" hidden aria-labelledby="cat-pizzas">
+            <h3 class="cardapio__group-title" id="cat-pizzas"><i class="fas fa-pizza-slice" aria-hidden="true"></i> Pizzas</h3>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Pizzas Salgadas</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Calabresa com Cebola</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Média</small> <strong>R$ 42,90</strong></span>
+                      <span class="menu-item__variant"><small>Grande</small> <strong>R$ 52,90</strong></span>
+                    </p>
+                  </div>
+                  <p class="menu-item__desc">Queijo mussarela, calabresa, cebola e orégano.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Mussarela</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Média</small> <strong>R$ 40,90</strong></span>
+                      <span class="menu-item__variant"><small>Grande</small> <strong>R$ 49,90</strong></span>
+                    </p>
+                  </div>
+                  <p class="menu-item__desc">Queijo mussarela e orégano.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Marguerita</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Média</small> <strong>R$ 42,90</strong></span>
+                      <span class="menu-item__variant"><small>Grande</small> <strong>R$ 52,90</strong></span>
+                    </p>
+                  </div>
+                  <p class="menu-item__desc">Queijo mussarela, tomate, manjericão e orégano.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Portuguesa</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Média</small> <strong>R$ 45,90</strong></span>
+                      <span class="menu-item__variant"><small>Grande</small> <strong>R$ 62,90</strong></span>
+                    </p>
+                  </div>
+                  <p class="menu-item__desc">Queijo mussarela, calabresa, presunto, cebola, tomate, pimentão, azeitona, ovo e orégano.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Frango com Catupiry Braseiro</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Média</small> <strong>R$ 45,90</strong></span>
+                      <span class="menu-item__variant"><small>Grande</small> <strong>R$ 59,90</strong></span>
+                    </p>
+                  </div>
+                  <p class="menu-item__desc">Queijo mussarela, frango desfiado, catupiry e orégano.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Quatro Queijos</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Média</small> <strong>R$ 49,90</strong></span>
+                      <span class="menu-item__variant"><small>Grande</small> <strong>R$ 69,90</strong></span>
+                    </p>
+                  </div>
+                  <p class="menu-item__desc">Queijo mussarela, catupiry, gorgonzola e provolone.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Carne Seca com Catupiry</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Média</small> <strong>R$ 45,90</strong></span>
+                      <span class="menu-item__variant"><small>Grande</small> <strong>R$ 62,90</strong></span>
+                    </p>
+                  </div>
+                  <p class="menu-item__desc">Queijo mussarela, carne seca desfiada acebolada, catupiry e orégano.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Pizzas Doces</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Banana c/ Canela</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Média</small> <strong>R$ 40,90</strong></span>
+                      <span class="menu-item__variant"><small>Grande</small> <strong>R$ 55,90</strong></span>
+                    </p>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Morango c/ Nutella</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Média</small> <strong>R$ 45,90</strong></span>
+                      <span class="menu-item__variant"><small>Grande</small> <strong>R$ 59,90</strong></span>
+                    </p>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Nutella</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <p class="menu-item__prices">
+                      <span class="menu-item__variant"><small>Média</small> <strong>R$ 42,90</strong></span>
+                      <span class="menu-item__variant"><small>Grande</small> <strong>R$ 57,90</strong></span>
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="cardapio__group" data-category="burgers" hidden aria-labelledby="cat-burgers">
+            <h3 class="cardapio__group-title" id="cat-burgers"><i class="fas fa-burger" aria-hidden="true"></i> Hambúrgueres &amp; Sanduíches</h3>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Hambúrgueres</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Braseiro Burger</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 32,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Pão brioche, hambúrguer artesanal de picanha, queijo mussarela, ovo frito e bacon. Acompanha batata frita.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Braseiro do Chef</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 35,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Pão brioche, hambúrguer artesanal de picanha, queijo cheddar, queijo mussarela, bacon e onion rings. Acompanha batata frita.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Braseiro Berg</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 36,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Pão brioche, hambúrguer artesanal, queijo provolone, ovo frito e cebola roxa caramelizada. Acompanha batata frita.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Braseiro Grajaú</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 36,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Pão brioche, hambúrguer artesanal de picanha, queijo mussarela, alface e tomate. Acompanha batata frita.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Sanduíches</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Alcatra Acebolada c/ Queijo</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 24,00</strong>
+                  </div>
+                  <p class="menu-item__desc">No pão francês. Acompanha batata frita.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Carne Assada com Queijo</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 22,90</strong>
+                  </div>
+                  <p class="menu-item__desc">No pão francês. Acompanha batata frita.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Contrafilé com Queijo e Abacaxi</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 26,90</strong>
+                  </div>
+                  <p class="menu-item__desc">No pão francês. Acompanha batata frita.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Contrafilé com Queijo</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 24,90</strong>
+                  </div>
+                  <p class="menu-item__desc">No pão francês. Acompanha batata frita.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Linguiça com Queijo</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 20,90</strong>
+                  </div>
+                  <p class="menu-item__desc">No pão francês. Acompanha batata frita.</p>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Filé de Frango com Queijo</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 20,90</strong>
+                  </div>
+                  <p class="menu-item__desc">No pão francês. Acompanha batata frita.</p>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="cardapio__group" data-category="massas" hidden aria-labelledby="cat-massas">
+            <h3 class="cardapio__group-title" id="cat-massas"><i class="fas fa-bowl-rice" aria-hidden="true"></i> Massas Frescas</h3>
+            <div class="cardapio__subgroup">
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Espaguete à Bolonhesa</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 32,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Talharim c/ Camarão ao Molho Branco</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 45,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Nhoque à Bolonhesa</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 36,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Nhoque ao 4 Queijos</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 42,90</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="cardapio__group" data-category="guarnicoes" hidden aria-labelledby="cat-guarnicoes">
+            <h3 class="cardapio__group-title" id="cat-guarnicoes"><i class="fas fa-leaf" aria-hidden="true"></i> Guarnições</h3>
+            <div class="cardapio__subgroup">
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Arroz c/ Brócolis</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 20,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Arroz Branco</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 18,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Arroz à lá Grega</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 22,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Porção de Feijão</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 16,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Batata Frita</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 25,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Salada de Maionese</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 24,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Salada Verde</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 19,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Salada de Legumes</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 20,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Farofa c/ Ovos</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 18,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Batata Portuguesa</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 29,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Vinagrete</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 9,90</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="cardapio__group" data-category="bebidas" hidden aria-labelledby="cat-bebidas">
+            <h3 class="cardapio__group-title" id="cat-bebidas"><i class="fas fa-beer-mug-empty" aria-hidden="true"></i> Chopes &amp; Bebidas</h3>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Chopes</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Brahma Caneca Zero Grau</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 10,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Brahma Caldereta</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 8,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Chope de Vinho</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 12,90</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Cervejas 600ml</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Amstel</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 13,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Heineken</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 18,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Eisenbahn</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 13,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Brahma</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 13,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Original</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 14,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Spaten</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 15,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Stella Artois</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 16,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Stella Pure Gold</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 18,00</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Cervejas Longneck</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Heineken / Heineken Zero</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 13,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Praya</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 12,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Baden-Baden</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 20,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Hocus Pocus</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 22,90</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Drinks</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Caipirinha 51 ou Barril</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 16,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Caipivodka Smirnoff</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 19,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Caipivodka Absolut</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 25,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Piña Colada</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 29,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Aperol Spritz</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 29,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Mojito</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 25,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Tanqueray Gin (Importado)</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 35,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Gin Tropical (Nacional)</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 29,90</strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="cardapio__subgroup">
+              <h4 class="cardapio__subgroup-title">Soft Drinks</h4>
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Refrigerante Lata</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 9,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Coca-Cola KS</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 8,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Guaraviton</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 9,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Guaravita</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 4,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Mate Leão</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 9,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">H2O / Limoneto</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 10,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Água sem Gás</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 5,00</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Água com Gás</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 6,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Sucos no Copo</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 14,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Laranja, abacaxi c/ hortelã, limonada suíça, limão, morango e maracujá.</p>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="cardapio__group" data-category="sobremesas" hidden aria-labelledby="cat-sobremesas">
+            <h3 class="cardapio__group-title" id="cat-sobremesas"><i class="fas fa-ice-cream" aria-hidden="true"></i> Sobremesas</h3>
+            <div class="cardapio__subgroup">
+              <ul class="menu-list">
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Brownie com Sorvete</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 27,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Banana Split</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 27,90</strong>
+                  </div>
+                </li>
+                <li class="menu-item">
+                  <div class="menu-item__row">
+                    <h5 class="menu-item__name">Taça de Sorvete</h5>
+                    <span class="menu-item__leader" aria-hidden="true"></span>
+                    <strong class="menu-item__price">R$ 14,90</strong>
+                  </div>
+                  <p class="menu-item__desc">Morango, chocolate e creme.</p>
+                </li>
+              </ul>
+            </div>
+          </section>
         </div>
         <div class="cardapio__cta-block animate-fade-up">
-          <button type="button" class="btn btn--primary btn--lg" id="btn-abrir-cardapio-completo" aria-label="Ver cardápio completo em tela cheia">
-            <i class="fas fa-book-open"></i> Ver Cardápio Completo
-          </button>
           <div class="cardapio__cta-extra">
-            <p class="cardapio__cta-sub">Consulte todos os cortes, guarnições, petiscos e bebidas com fotos e preços.</p>
+            <p class="cardapio__cta-sub">Dúvidas sobre o cardápio ou quer fazer um pedido? Fale com a gente!</p>
+            <a href="https://wa.me/5521984904526?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido%20ou%20tirar%20d%C3%BAvidas%20sobre%20o%20card%C3%A1pio." target="_blank" rel="noopener" class="btn btn--whatsapp btn--sm" id="cardapio-wpp-btn">
+              <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+            </a>
             <a href="https://www.instagram.com/braseirodograjau/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" id="cardapio-ig-btn">
               <i class="fab fa-instagram"></i> Acompanhe no Instagram
             </a>
@@ -417,25 +1518,57 @@
         </div>
         <div class="galeria__carousel-container animate-fade-up animate-delay-3">
           <div class="galeria__carousel-track" id="track-galeria" tabindex="0" role="region" aria-label="Carrossel de fotos da galeria">
-            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: ambiente acolhedor do restaurante">
-              <img src="assets/ambiente_restaurante.webp" alt="Salão interno acolhedor e mesas do Braseiro do Grajaú" class="galeria__item__img" width="600" height="480" loading="lazy">
-              <div class="galeria__item__overlay"><span class="galeria__item__caption">Nosso Ambiente</span></div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: fachada iluminada e mesas ao ar livre à noite">
+              <img src="assets/galeria/1.png" alt="Fachada iluminada do Braseiro do Grajaú à noite com mesas ao ar livre e ambiente animado" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Noite no Braseiro</span></div>
             </div>
-            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: carnes na brasa de carvão">
-              <img src="assets/churrasco_fraldinha.webp" alt="Cortes de carne sendo grelhados na brasa de carvão viva" class="galeria__item__img" width="400" height="240" loading="lazy">
-              <div class="galeria__item__overlay"><span class="galeria__item__caption">Brasa Ardente</span></div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: mesas externas com vista para a Pedra do Grajaú">
+              <img src="assets/galeria/2.png" alt="Área externa com mesas sob ombrelones e vista para a Pedra do Grajaú" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Vista da Pedra</span></div>
             </div>
-            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: chope gelado tirado na hora">
-              <img src="assets/chope_gelado.webp" alt="Chope gelado servido no balcão do bar" class="galeria__item__img" width="400" height="240" loading="lazy">
-              <div class="galeria__item__overlay"><span class="galeria__item__caption">Chope Geladíssimo</span></div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: balcão do bar com chopeira Brahma e prateleiras de destilados">
+              <img src="assets/galeria/3.png" alt="Balcão do bar com chopeira Brahma e prateleiras iluminadas de destilados" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Nosso Bar</span></div>
             </div>
-            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: picanha suculenta na brasa">
-              <img src="assets/churrasco_picanha.webp" alt="Corte nobre de picanha suculenta fatiada na tábua" class="galeria__item__img" width="400" height="240" loading="lazy">
-              <div class="galeria__item__overlay"><span class="galeria__item__caption">Picanha na Brasa</span></div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: letreiro oficial do Braseiro do Grajaú">
+              <img src="assets/galeria/4.png" alt="Letreiro luminoso Braseiro do Grajaú na fachada clássica do restaurante" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Fachada Braseiro</span></div>
             </div>
-            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: porção de petiscos variados">
-              <img src="assets/petiscos_bar.webp" alt="Tábua variada com petiscos e tira-gostos tradicionais" class="galeria__item__img" width="400" height="240" loading="lazy">
-              <div class="galeria__item__overlay"><span class="galeria__item__caption">Petiscos do Bar</span></div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: cervejeira com garrafas super geladas">
+              <img src="assets/galeria/5.png" alt="Cervejeira abastecida com cervejas em garrafa servidas trincando de geladas" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Cervejas Trincando</span></div>
+            </div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: porção de calabresa acebolada com batatas fritas">
+              <img src="assets/galeria/6.png" alt="Porção de calabresa acebolada salteada servida com batatas fritas crocantes" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Calabresa c/ Fritas</span></div>
+            </div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: chapa de ferro quente com carne e queijo coalho">
+              <img src="assets/galeria/7.png" alt="Carne acebolada na chapa de ferro quente com queijo coalho tostado e cheiro verde" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Chapa Fumegante</span></div>
+            </div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: chopp Brahma na caneca zero grau ultracongelada">
+              <img src="assets/galeria/8.png" alt="Chopp Brahma servido na caneca pesada ultracongelada a zero grau com colarinho cremoso" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Caneca Zero Grau</span></div>
+            </div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: porção de pastéis crocantes do Braseiro">
+              <img src="assets/galeria/9.png" alt="Porção de pastéis dourados e estaladiços saindo fresquinhos para as mesas" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Pastéis Crocantes</span></div>
+            </div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: espeto na brasa acompanhado de farofa e vinagrete">
+              <img src="assets/galeria/10.png" alt="Espeto suculento grelhado na brasa de carvão servido com farofa e vinagrete" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Espeto na Brasa</span></div>
+            </div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: espetos dourando na brasa da churrasqueira">
+              <img src="assets/galeria/11.png" alt="Espetos de tulipa de frango dourando na brasa viva da churrasqueira" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Grelha Ardente</span></div>
+            </div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: batata do chef com cheddar cremoso e bacon">
+              <img src="assets/galeria/12.png" alt="Porção farta de batatas fritas crocantes cobertas com cheddar cremoso e bacon" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Batata do Chef</span></div>
+            </div>
+            <div class="galeria__item" tabindex="0" role="button" aria-label="Ver foto: tábua mista completa na chapa">
+              <img src="assets/galeria/13.png" alt="Tábua mista na chapa com tiras de carne, frango, calabresa e batatas fritas" class="galeria__item__img" width="1200" height="896" loading="lazy">
+              <div class="galeria__item__overlay"><span class="galeria__item__caption">Tábua Mista</span></div>
             </div>
           </div>
           <div class="carousel-dots galeria-dots" aria-label="Navegação da galeria"></div>
@@ -588,11 +1721,14 @@
             </div>
           </div>
           <div class="contato__card animate-fade-up animate-delay-3">
-            <div class="contato__icon"><i class="fab fa-instagram"></i></div>
+            <div class="contato__icon"><i class="fab fa-whatsapp"></i></div>
             <div class="contato__detail">
-              <strong>Redes &amp; Contato</strong>
-              <p><a href="https://www.instagram.com/braseirodograjau/" target="_blank" rel="noopener" id="contato-ig-link">@braseirodograjau</a></p>
+              <strong>Telefone &amp; WhatsApp</strong>
+              <p><a href="https://wa.me/5521984904526" target="_blank" rel="noopener" id="contato-tel-link" style="color:var(--color-amber);font-weight:600;">+55 (21) 98490-4526</a></p>
               <div class="contato__social">
+                <a href="https://wa.me/5521984904526?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Braseiro%20do%20Graja%C3%BA." target="_blank" rel="noopener" class="social-btn social-btn--whatsapp" id="contato-wpp-btn">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
                 <a href="https://www.instagram.com/braseirodograjau/" target="_blank" rel="noopener" class="social-btn social-btn--instagram" id="contato-social-ig">
                   <i class="fab fa-instagram"></i> Instagram
                 </a>
@@ -635,6 +1771,9 @@
           </div>
           <p class="footer__brand-text">O melhor churrasco na brasa, chope gelado e petiscos de bar do Grajaú, Zona Norte do Rio de Janeiro. Ambiente familiar e descontraído.</p>
           <div class="footer__social-row">
+            <a href="https://wa.me/5521984904526?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Braseiro%20do%20Graja%C3%BA" target="_blank" rel="noopener" class="footer__social-link" aria-label="WhatsApp" id="footer-wpp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
             <a href="https://www.instagram.com/braseirodograjau/" target="_blank" rel="noopener" class="footer__social-link" aria-label="Instagram" id="footer-ig">
               <i class="fab fa-instagram"></i>
             </a>
@@ -672,6 +1811,13 @@
             </div>
           </div>
           <div class="footer__address-row">
+            <i class="fab fa-whatsapp"></i>
+            <div>
+              <strong class="footer__label">Telefone &amp; WhatsApp</strong><br>
+              <a href="https://wa.me/5521984904526" target="_blank" rel="noopener" id="ftr-tel-link">+55 (21) 98490-4526</a>
+            </div>
+          </div>
+          <div class="footer__address-row">
             <i class="fab fa-instagram"></i>
             <div>
               <strong class="footer__label">Instagram</strong><br>
@@ -690,64 +1836,12 @@
     </div>
   </footer>
 
-  <!-- ===== MODAL CARDÁPIO COMPLETO (FRENTE E VERSO EM TELA CHEIA) ===== -->
-  <div id="modal-cardapio" class="modal-cardapio" role="dialog" aria-modal="true" aria-label="Cardápio Completo do Braseiro do Grajaú">
-    <div class="modal-cardapio__backdrop"></div>
-    <div class="modal-cardapio__dialog">
-      <div class="modal-cardapio__header">
-        <div class="modal-cardapio__tabs" role="tablist" aria-label="Páginas do Cardápio">
-          <button type="button" class="modal-cardapio__tab active" data-page="frente" role="tab" aria-selected="true" id="tab-cardapio-frente">
-            <i class="fas fa-file-alt"></i> Frente <span class="tab-desc">(Pratos &amp; Carnes)</span>
-          </button>
-          <button type="button" class="modal-cardapio__tab" data-page="verso" role="tab" aria-selected="false" id="tab-cardapio-verso">
-            <i class="fas fa-beer"></i> Verso <span class="tab-desc">(Bebidas &amp; Petiscos)</span>
-          </button>
-        </div>
-        <div class="modal-cardapio__header-actions">
-          <button type="button" class="modal-cardapio__zoom-btn" id="modal-cardapio-zoom" aria-label="Ampliar ou ajustar cardápio" title="Ampliar ou ajustar à tela">
-            <i class="fas fa-search-plus" aria-hidden="true"></i>
-          </button>
-          <button type="button" class="modal-cardapio__close" id="modal-cardapio-close" aria-label="Fechar cardápio">
-            <i class="fas fa-times" aria-hidden="true"></i>
-          </button>
-        </div>
-      </div>
-
-      <div class="modal-cardapio__body">
-        <div class="modal-cardapio__view" id="view-cardapio-frente">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" data-src="assets/cardapio_frente.webp" alt="Cardápio completo Braseiro do Grajaú - Frente: Carnes na brasa, guarnições e pratos principais" class="modal-cardapio__img" width="1414" height="2000">
-        </div>
-        <div class="modal-cardapio__view modal-cardapio__view--hidden" id="view-cardapio-verso">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" data-src="assets/cardapio_verso.webp" alt="Cardápio completo Braseiro do Grajaú - Verso: Chopes, bebidas, petiscos e sobremesas" class="modal-cardapio__img" width="1414" height="2000">
-        </div>
-      </div>
-
-      <div class="modal-cardapio__footer">
-        <div class="modal-cardapio__footer-spacer" aria-hidden="true"></div>
-        <div class="modal-cardapio__nav">
-          <button type="button" class="btn btn--ghost btn--sm" id="btn-cardapio-prev" disabled aria-label="Página anterior">
-            <i class="fas fa-chevron-left"></i> Anterior
-          </button>
-          <span class="modal-cardapio__page-indicator" id="cardapio-page-indicator">Página 1 de 2 (Frente)</span>
-          <button type="button" class="btn btn--ghost btn--sm" id="btn-cardapio-next" aria-label="Próxima página">
-            Próxima <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
-        <div class="modal-cardapio__footer-cta">
-          <a href="https://wa.me/55219XXXXXXXX?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido%20ou%20tirar%20d%C3%BAvidas%20sobre%20o%20card%C3%A1pio." target="_blank" rel="noopener" class="btn btn--whatsapp btn--sm" id="modal-cardapio-wpp">
-            <i class="fab fa-whatsapp"></i> Falar no WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Imagem em tela cheia">
     <button id="lightbox-close" class="lightbox__close" aria-label="Fechar lightbox"><i class="fas fa-times"></i></button>
     <img id="lightbox-img" class="lightbox__img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Visualização em tamanho real">
   </div>
 
-  <a href="https://wa.me/55219XXXXXXXX?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Braseiro%20do%20Graja%C3%BA"
+  <a href="https://wa.me/5521984904526?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Braseiro%20do%20Graja%C3%BA"
      target="_blank" rel="noopener" class="floating-whatsapp" id="floating-whatsapp" aria-label="Fale conosco pelo WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
@@ -763,6 +1857,6 @@
     <button id="cookie-accept" class="btn-cookie" aria-label="Aceitar cookies">Entendi <i class="fas fa-check"></i></button>
   </div>
 
-  <script src="js/main.js?v=22" defer></script>
+  <script src="js/main.js?v=26" defer></script>
 </body>
 </html>

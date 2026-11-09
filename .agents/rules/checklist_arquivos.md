@@ -3,9 +3,8 @@
 ---
 
 ## 🥩 Cenário 1: Novo Prato ou Atualização do Cardápio
-- `index.html`: Atualizar o card dentro da seção `#cardapio` (nome, descrição, preço e tags).
-- `assets/`: Adicionar imagem otimizada em WebP/JPG (manter proporção padrão).
-- `assets/cardapio_frente.png` e `assets/cardapio_verso.png`: Caso o menu impresso em modal HD seja alterado, atualizar as duas pranchas em alta resolução.
+- `index.html`: Atualizar o item (`<li class="menu-item">`) dentro do grupo da categoria correspondente na seção `#cardapio` (nome, preço e descrição). O cardápio é **somente texto** — não adicionar imagens.
+- `assets/cardapio/`: PDFs oficiais do cardápio (fonte dos itens e preços). Ao receber novos PDFs, conferir os valores da seção `#cardapio` contra eles.
 
 ## 📅 Cenário 2: Sistema de Reservas
 - `index.html`: Campos do formulário `#reservaForm`.

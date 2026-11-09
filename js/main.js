@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const getWhatsAppNumber = () => document.body.dataset.wa || '55219XXXXXXXX';
+  const getWhatsAppNumber = () => document.body.dataset.wa || '5521984904526';
   const getWhatsAppUrl = (text) => `https://wa.me/${getWhatsAppNumber()}?text=${encodeURIComponent(text)}`;
 
   const syncWhatsAppLinks = () => {
@@ -473,43 +473,32 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // Cardápio: Carrossel e Filtro de Categorias sem duplicação de DOM
-  const menuTrack = document.getElementById('track-cardapio');
-  const menuDots = document.getElementById('dots-cardapio');
-  const menuCards = menuTrack ? menuTrack.querySelectorAll('.menu-card') : [];
-  const tabBtns = document.querySelectorAll('.tab-btn');
+  // Cardápio: filtro por categoria (somente texto) — botões no desktop, dropbox no mobile
+  const menuGroups = document.querySelectorAll('.cardapio__group');
+  const menuContent = document.getElementById('cardapio-content');
+  const menuSelect = document.getElementById('cardapio-select');
+  const tabBtns = document.querySelectorAll('.cardapio__tabs .tab-btn');
 
-  let cardapioCarousel = null;
-  if (menuTrack) {
-    cardapioCarousel = setupCarousel({
-      track: menuTrack,
-      getCards: () => menuTrack.querySelectorAll('.menu-card'),
-      dotsContainer: menuDots
+  const applyMenuFilter = (cat) => {
+    tabBtns.forEach(b => {
+      const isActive = b.dataset.tab === cat;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
+    if (menuSelect) menuSelect.value = cat;
 
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const cat = btn.dataset.tab;
-
-        tabBtns.forEach(b => {
-          b.classList.toggle('active', b === btn);
-          b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
-        });
-
-        menuCards.forEach(card => {
-          if (cat === 'tudo' || card.dataset.category === cat) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-
-        if (cardapioCarousel) {
-          cardapioCarousel.resetScroll();
-          setTimeout(() => cardapioCarousel.updateControls(), 40);
-        }
-      });
+    menuGroups.forEach(group => {
+      group.hidden = group.dataset.category !== cat;
     });
+    // Centraliza a categoria ativa na tela (sempre 1 categoria ativa)
+    if (menuContent) menuContent.classList.add('cardapio__content--single');
+  };
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => applyMenuFilter(btn.dataset.tab));
+  });
+  if (menuSelect) {
+    menuSelect.addEventListener('change', () => applyMenuFilter(menuSelect.value));
   }
 
   // Galeria: Carrossel
@@ -575,138 +564,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLb();
     });
   }
-
-  /* --- 7.5. MODAL CARDÁPIO COMPLETO (FRENTE E VERSO) ---------- */
-    /* --- 7.5. MODAL CARDÁPIO COMPLETO (FRENTE E VERSO) ---------- */
-  function initModalCardapio() {
-    const openBtn = document.getElementById('btn-abrir-cardapio-completo');
-    const modal = document.getElementById('modal-cardapio');
-    const closeBtn = document.getElementById('modal-cardapio-close');
-    const zoomBtn = document.getElementById('modal-cardapio-zoom');
-    const tabs = document.querySelectorAll('.modal-cardapio__tab');
-    const viewFrente = document.getElementById('view-cardapio-frente');
-    const viewVerso = document.getElementById('view-cardapio-verso');
-    const prevBtn = document.getElementById('btn-cardapio-prev');
-    const nextBtn = document.getElementById('btn-cardapio-next');
-    const indicator = document.getElementById('cardapio-page-indicator');
-    const modalBody = document.querySelector('.modal-cardapio__body');
-    let lastActiveCardapioTrigger = null;
-    const modalTrap = modal ? setupFocusTrap(modal) : null;
-
-    if (!modal) return;
-
-    let currentPage = 'frente';
-    let isZoomed = false;
-
-    function updateZoom(zoomed) {
-      isZoomed = zoomed;
-      if (modalBody) {
-        modalBody.classList.toggle('is-zoomed', isZoomed);
-      }
-      if (zoomBtn) {
-        const icon = zoomBtn.querySelector('i');
-        if (icon) {
-          icon.className = isZoomed ? 'fas fa-search-minus' : 'fas fa-search-plus';
-        }
-        zoomBtn.setAttribute('title', isZoomed ? 'Ajustar à tela' : 'Ampliar cardápio');
-        zoomBtn.setAttribute('aria-label', isZoomed ? 'Ajustar à tela' : 'Ampliar cardápio');
-      }
-      if (!isZoomed && modalBody) {
-        modalBody.scrollTop = 0;
-      }
-    }
-
-    function toggleZoom() {
-      updateZoom(!isZoomed);
-    }
-
-    function setPage(page) {
-      currentPage = page;
-      updateZoom(false);
-
-      if (page === 'frente') {
-        if (viewFrente) viewFrente.classList.remove('modal-cardapio__view--hidden');
-        if (viewVerso) viewVerso.classList.add('modal-cardapio__view--hidden');
-        if (prevBtn) prevBtn.disabled = true;
-        if (nextBtn) nextBtn.disabled = false;
-        if (indicator) indicator.textContent = 'Página 1 de 2 (Frente)';
-      } else {
-        if (viewFrente) viewFrente.classList.add('modal-cardapio__view--hidden');
-        if (viewVerso) viewVerso.classList.remove('modal-cardapio__view--hidden');
-        if (prevBtn) prevBtn.disabled = false;
-        if (nextBtn) nextBtn.disabled = true;
-        if (indicator) indicator.textContent = 'Página 2 de 2 (Verso)';
-      }
-
-      tabs.forEach(tab => {
-        const isMatch = tab.dataset.page === page;
-        tab.classList.toggle('active', isMatch);
-        tab.setAttribute('aria-selected', isMatch ? 'true' : 'false');
-      });
-
-      if (modalBody) modalBody.scrollTop = 0;
-    }
-
-    function loadModalImages() {
-      const pendingImgs = modal.querySelectorAll('.modal-cardapio__img[data-src]');
-      pendingImgs.forEach(img => {
-        if (img.dataset.src) {
-          img.src = img.dataset.src;
-          img.removeAttribute('data-src');
-        }
-      });
-    }
-
-    function openModal() {
-      lastActiveCardapioTrigger = document.activeElement;
-      loadModalImages();
-      setPage('frente');
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      if (modalTrap) modalTrap.activate();
-      if (closeBtn) closeBtn.focus();
-    }
-
-    function closeModal() {
-      if (modalTrap) modalTrap.deactivate();
-      modal.classList.remove('open');
-      updateZoom(false);
-      document.body.style.overflow = '';
-      if (lastActiveCardapioTrigger && typeof lastActiveCardapioTrigger.focus === 'function') {
-        lastActiveCardapioTrigger.focus();
-      }
-    }
-
-    if (openBtn) openBtn.addEventListener('click', openModal);
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (zoomBtn) zoomBtn.addEventListener('click', toggleZoom);
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => setPage(tab.dataset.page));
-    });
-
-    if (prevBtn) prevBtn.addEventListener('click', () => setPage('frente'));
-    if (nextBtn) nextBtn.addEventListener('click', () => setPage('verso'));
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal || e.target.classList.contains('modal-cardapio__backdrop')) {
-        closeModal();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (!modal.classList.contains('open')) return;
-      if (e.key === 'Escape') {
-        closeModal();
-      } else if (e.key === 'ArrowLeft') {
-        setPage('frente');
-      } else if (e.key === 'ArrowRight') {
-        setPage('verso');
-      }
-    });
-  }
-
-  initModalCardapio();
 
 /* --- 8. BOTÃO VOLTAR AO TOPO ------------------------------- */
   if (backToTopBtn) {

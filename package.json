@@ -2,15 +2,15 @@
   "name": "braseiro-do-grajau",
   "version": "1.0.0",
   "description": "Website oficial e reservas do Restaurante Braseiro do Grajaú - RJ",
-  "main": "index.html",
+  "main": "server.js",
   "scripts": {
-    "start": "serve .",
-    "build": "echo 'Build completed. Static files served directly from repository.'",
+    "start": "node server.js",
+    "build": "echo 'Build completed'",
     "test": "python tests/run_tests.py"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/garbayowebtech/braseiro_do_grajau.git"
+    "url": "git+https://github.com/garbayowebtech/braseirodograjau.git"
   },
   "keywords": [
     "restaurante",
@@ -20,8 +20,5 @@
     "rio-de-janeiro"
   ],
   "author": "Garbayowebtech",
-  "license": "ISC",
-  "devDependencies": {
-    "serve": "^14.2.4"
-  }
+  "license": "ISC"
 }

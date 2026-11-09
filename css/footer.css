@@ -128,6 +128,15 @@
   min-width: 16px;
 }
 
+.footer__address-row a {
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footer__address-row a:hover {
+  color: var(--color-amber);
+}
+
 /* Footer Bottom */
 .footer__bottom {
   border-top: 1px solid rgba(212, 146, 31, 0.1);

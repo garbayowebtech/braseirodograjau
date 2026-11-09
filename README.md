@@ -24,7 +24,7 @@ O projeto foi desenvolvido com foco em alta performance, estética premium e exp
 - **Hero Section Dinâmica** com efeito de brasa incandescente e digitação inteligente (com suporte a acessibilidade).
 - **Faixa de Horários e Endereço** com informações rápidas e CEP oficial.
 - **Seção de Diferenciais** com background em vídeo de brasa viva.
-- **Cardápio Interativo** com carrossel móvel, abas por categoria e **Modal de Cardápio Completo em Tela Cheia** (frente e verso em alta definição).
+- **Cardápio em Texto** com todos os itens e preços dos cardápios oficiais (`assets/cardapio/`), organizados em categorias com filtro por botões — sem imagens.
 - **Sistema de Reservas Integrado** com validação de horário e envio formatado direto para o WhatsApp.
 - **Galeria de Fotos** com carrossel tátil e lightbox acessível por teclado (`Enter`, `Espaço`, `Esc`).
 - **Seção Onde Estamos** com mapa interativo e atalho direto para o perfil oficial no Google Maps.
@@ -111,18 +111,17 @@ Abra a pasta no VS Code, clique com o botão direito em `index.html` e selecione
 
 ## 📱 Configuração de Contato e WhatsApp
 
-O número de WhatsApp do estabelecimento está centralizado no atributo `data-wa` da tag `<body>` em `index.html`:
+O número oficial do estabelecimento está configurado como `+55 (21) 98490-4526` e centralizado no atributo `data-wa` da tag `<body>` em `index.html`:
 
 ```html
-<body data-wa="55219XXXXXXXX">
+<body data-wa="5521984904526">
 ```
 
-Quando você tiver o número definitivo (com DDI e DDD, ex: `5521998765432`):
-1. Altere o valor de `data-wa` no `index.html`.
-2. O script [js/main.js](js/main.js) sincroniza automaticamente:
-   - O botão flutuante do WhatsApp.
-   - O botão de contato no modal do cardápio.
-   - O envio da reserva com os dados formatados do formulário.
+O script [js/main.js](js/main.js) sincroniza automaticamente:
+- O botão flutuante do WhatsApp.
+- O botão de contato direto no cardápio.
+- Os links de contato nas seções de rodapé e atendimento.
+- O envio da reserva com os dados formatados do formulário.
 
 ---
 
